@@ -1,0 +1,85 @@
+{
+  "status": "business_outcome",
+  "outcome": "MEMBER_NOT_FOUND",
+  "disposition": "answer",
+  "description": "The core holds no member with that number. The search screen reports it in place of a results table; this is a legitimate answer to the caller's question, not a failure.",
+  "outputs": {},
+  "trace": {
+    "runId": "replay-not-found",
+    "capabilityId": "meridian-core.member_savings_balance",
+    "capabilityVersion": 1,
+    "tenantId": "base",
+    "evidenceDir": "evidence/local-scratch/replay-not-found",
+    "steps": [
+      {
+        "stepId": "00_open_entry",
+        "intent": "Open the application at its entry point.",
+        "status": "ok",
+        "risk": "safe",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 18
+      },
+      {
+        "stepId": "02_user_id",
+        "intent": "Type the service user id into the sign-on form.",
+        "status": "ok",
+        "risk": "sensitive",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 23
+      },
+      {
+        "stepId": "03_password",
+        "intent": "Type the service password into the sign-on form.",
+        "status": "ok",
+        "risk": "sensitive",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 38
+      },
+      {
+        "stepId": "04_sign_on",
+        "intent": "Submit the sign-on form to reach the servicing console.",
+        "status": "ok",
+        "risk": "safe",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 64
+      },
+      {
+        "stepId": "05_member_search",
+        "intent": "Open the member search screen from the menu.",
+        "status": "ok",
+        "risk": "sensitive",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 70
+      },
+      {
+        "stepId": "06_member_number",
+        "intent": "Type the member number being looked up into the search field.",
+        "status": "ok",
+        "risk": "sensitive",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 17
+      },
+      {
+        "stepId": "07_search",
+        "intent": "Run the member search.",
+        "status": "skipped",
+        "risk": "safe",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 0
+      }
+    ],
+    "durationMs": 297
+  }
+}

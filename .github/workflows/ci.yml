@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # The suite drives a real browser against the demo application; without
+      # this every integration test would fail rather than quietly skip, but
+      # installing it explicitly keeps the failure mode obvious either way.
+      - run: npx playwright install --with-deps chromium
+
+      - run: npm run typecheck
+      - run: npm run lint
+
+      - name: Test with coverage
+        run: npm run coverage -- --reporter=verbose 2>&1 | tee test-output.txt
+
+      # A green job is not proof the tests ran. An integration suite that skips
+      # itself when a dependency is missing stays green while testing nothing,
+      # so a skip fails the build rather than passing quietly.
+      - name: Fail on skipped tests
+        run: |
+          if grep -qE "([0-9]+ skipped|↓ .*skipped)" test-output.txt; then
+            echo "::error::tests were skipped; a skipped suite is not a passing suite"
+            grep -nE "([0-9]+ skipped|↓ .*skipped)" test-output.txt
+            exit 1
+          fi

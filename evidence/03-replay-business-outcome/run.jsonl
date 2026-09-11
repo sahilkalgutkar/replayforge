@@ -1,0 +1,28 @@
+{"seq":1,"at":"2026-09-11T02:54:58.517Z","type":"run.started","runId":"replay-not-found","capability":{"id":"meridian-core.member_savings_balance","version":1,"name":"member_savings_balance"},"tenantId":"base","approval":"draft","inputs":{"memberNumber":"99999"},"overrides":{"patched":[],"inserted":[],"skipped":[]}}
+{"seq":2,"at":"2026-09-11T02:54:58.520Z","type":"step.started","stepId":"00_open_entry","intent":"Open the application at its entry point.","action":"navigate","declaredRisk":"safe"}
+{"seq":3,"at":"2026-09-11T02:54:58.538Z","type":"checkpoint.passed","stepId":"00_open_entry","detail":"text contains \"Sign On\" was present"}
+{"seq":4,"at":"2026-09-11T02:54:58.538Z","type":"step.finished","stepId":"00_open_entry","attempts":1}
+{"seq":5,"at":"2026-09-11T02:54:58.539Z","type":"step.started","stepId":"02_user_id","intent":"Type the service user id into the sign-on form.","action":"type","declaredRisk":"sensitive"}
+{"seq":6,"at":"2026-09-11T02:54:58.539Z","type":"target.resolved","stepId":"02_user_id","rung":"primary","matchCount":1,"control":{"role":"textbox","name":"","frame":""}}
+{"seq":7,"at":"2026-09-11T02:54:58.559Z","type":"action.typed","stepId":"02_user_id","value":"«secret:core_username»"}
+{"seq":8,"at":"2026-09-11T02:54:58.562Z","type":"step.finished","stepId":"02_user_id","attempts":1,"rung":"primary"}
+{"seq":9,"at":"2026-09-11T02:54:58.562Z","type":"step.started","stepId":"03_password","intent":"Type the service password into the sign-on form.","action":"type","declaredRisk":"sensitive"}
+{"seq":10,"at":"2026-09-11T02:54:58.562Z","type":"target.resolved","stepId":"03_password","rung":"primary","matchCount":1,"control":{"role":"textbox","name":"","frame":""}}
+{"seq":11,"at":"2026-09-11T02:54:58.597Z","type":"action.typed","stepId":"03_password","value":"«secret:core_password»"}
+{"seq":12,"at":"2026-09-11T02:54:58.600Z","type":"step.finished","stepId":"03_password","attempts":1,"rung":"primary"}
+{"seq":13,"at":"2026-09-11T02:54:58.600Z","type":"step.started","stepId":"04_sign_on","intent":"Submit the sign-on form to reach the servicing console.","action":"click","declaredRisk":"safe"}
+{"seq":14,"at":"2026-09-11T02:54:58.600Z","type":"target.resolved","stepId":"04_sign_on","rung":"primary","matchCount":1,"control":{"role":"button","name":"Sign On","frame":""}}
+{"seq":15,"at":"2026-09-11T02:54:58.663Z","type":"checkpoint.passed","stepId":"04_sign_on","detail":"text contains \"Home\" was present"}
+{"seq":16,"at":"2026-09-11T02:54:58.664Z","type":"step.finished","stepId":"04_sign_on","attempts":1,"rung":"primary"}
+{"seq":17,"at":"2026-09-11T02:54:58.664Z","type":"step.started","stepId":"05_member_search","intent":"Open the member search screen from the menu.","action":"click","declaredRisk":"sensitive"}
+{"seq":18,"at":"2026-09-11T02:54:58.665Z","type":"target.resolved","stepId":"05_member_search","rung":"primary","matchCount":1,"control":{"role":"link","name":"Member Search","frame":"navFrame"}}
+{"seq":19,"at":"2026-09-11T02:54:58.733Z","type":"checkpoint.passed","stepId":"05_member_search","detail":"text contains \"Search\" was present"}
+{"seq":20,"at":"2026-09-11T02:54:58.734Z","type":"step.finished","stepId":"05_member_search","attempts":1,"rung":"primary"}
+{"seq":21,"at":"2026-09-11T02:54:58.734Z","type":"step.started","stepId":"06_member_number","intent":"Type the member number being looked up into the search field.","action":"type","declaredRisk":"sensitive"}
+{"seq":22,"at":"2026-09-11T02:54:58.734Z","type":"target.resolved","stepId":"06_member_number","rung":"primary","matchCount":1,"control":{"role":"textbox","name":"","frame":"mainFrame"}}
+{"seq":23,"at":"2026-09-11T02:54:58.746Z","type":"action.typed","stepId":"06_member_number","value":"99999"}
+{"seq":24,"at":"2026-09-11T02:54:58.751Z","type":"step.finished","stepId":"06_member_number","attempts":1,"rung":"primary"}
+{"seq":25,"at":"2026-09-11T02:54:58.751Z","type":"step.started","stepId":"07_search","intent":"Run the member search.","action":"click","declaredRisk":"safe"}
+{"seq":26,"at":"2026-09-11T02:54:58.751Z","type":"target.resolved","stepId":"07_search","rung":"primary","matchCount":1,"control":{"role":"button","name":"Search","frame":"mainFrame"}}
+{"seq":27,"at":"2026-09-11T02:54:58.812Z","type":"outcome.matched","stepId":"07_search","outcome":"MEMBER_NOT_FOUND","disposition":"answer","url":"http://127.0.0.1:62752/console"}
+{"seq":28,"at":"2026-09-11T02:54:58.813Z","type":"run.finished","status":"business_outcome","outcome":"MEMBER_NOT_FOUND"}

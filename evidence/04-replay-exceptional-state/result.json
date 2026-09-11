@@ -1,0 +1,54 @@
+{
+  "status": "escalated",
+  "interventionId": "fff9ade2-8518-4db9-8aeb-38f33b75455a",
+  "reason": "SESSION_EXPIRED: The console signed the service session out part-way through the flow. A replay cannot sign itself back in safely, so a person has to.",
+  "stepId": "04_sign_on",
+  "trace": {
+    "runId": "replay-session-expired",
+    "capabilityId": "meridian-core.member_savings_balance",
+    "capabilityVersion": 1,
+    "tenantId": "base",
+    "evidenceDir": "evidence/local-scratch/replay-session-expired",
+    "steps": [
+      {
+        "stepId": "00_open_entry",
+        "intent": "Open the application at its entry point.",
+        "status": "ok",
+        "risk": "safe",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 16
+      },
+      {
+        "stepId": "02_user_id",
+        "intent": "Type the service user id into the sign-on form.",
+        "status": "ok",
+        "risk": "sensitive",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 23
+      },
+      {
+        "stepId": "03_password",
+        "intent": "Type the service password into the sign-on form.",
+        "status": "ok",
+        "risk": "sensitive",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 34
+      },
+      {
+        "stepId": "04_sign_on",
+        "intent": "Submit the sign-on form to reach the servicing console.",
+        "status": "escalated",
+        "risk": "safe",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 0
+      }
+    ],
+    "durationMs": 182
+  }
+}

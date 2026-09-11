@@ -1,0 +1,23 @@
+node_modules/
+dist/
+coverage/
+*.log
+
+# Secrets — the example stays tracked, the real file never does
+/.env
+/.env.local
+
+# Agent tooling config stays local
+CLAUDE.md
+.claude/
+
+# Local scratch runs; the curated examples under evidence/ are committed
+/evidence/local-*/
+/.playwright/
+test-results/
+
+# macOS
+.DS_Store
+
+# The recorded capability is committed under evidence/; the working store is not.
+/capabilities/

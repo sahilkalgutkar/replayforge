@@ -1,0 +1,16 @@
+{
+  "status": "failed",
+  "error": {
+    "category": "input_invalid",
+    "message": "memberNumber does not match the required pattern ^[0-9]{4,10}$"
+  },
+  "trace": {
+    "runId": "replay-hard-failure",
+    "capabilityId": "meridian-core.member_savings_balance",
+    "capabilityVersion": 1,
+    "tenantId": "base",
+    "evidenceDir": "evidence/local-scratch/replay-hard-failure",
+    "steps": [],
+    "durationMs": 0
+  }
+}

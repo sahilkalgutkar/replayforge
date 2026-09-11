@@ -1,0 +1,19 @@
+{"seq":1,"at":"2026-09-11T02:54:59.005Z","type":"run.started","runId":"replay-session-expired","capability":{"id":"meridian-core.member_savings_balance","version":1,"name":"member_savings_balance"},"tenantId":"base","approval":"draft","inputs":{"memberNumber":"10021"},"overrides":{"patched":[],"inserted":[],"skipped":[]}}
+{"seq":2,"at":"2026-09-11T02:54:59.009Z","type":"step.started","stepId":"00_open_entry","intent":"Open the application at its entry point.","action":"navigate","declaredRisk":"safe"}
+{"seq":3,"at":"2026-09-11T02:54:59.025Z","type":"checkpoint.passed","stepId":"00_open_entry","detail":"text contains \"Sign On\" was present"}
+{"seq":4,"at":"2026-09-11T02:54:59.025Z","type":"step.finished","stepId":"00_open_entry","attempts":1}
+{"seq":5,"at":"2026-09-11T02:54:59.025Z","type":"step.started","stepId":"02_user_id","intent":"Type the service user id into the sign-on form.","action":"type","declaredRisk":"sensitive"}
+{"seq":6,"at":"2026-09-11T02:54:59.026Z","type":"target.resolved","stepId":"02_user_id","rung":"primary","matchCount":1,"control":{"role":"textbox","name":"","frame":""}}
+{"seq":7,"at":"2026-09-11T02:54:59.045Z","type":"action.typed","stepId":"02_user_id","value":"«secret:core_username»"}
+{"seq":8,"at":"2026-09-11T02:54:59.048Z","type":"step.finished","stepId":"02_user_id","attempts":1,"rung":"primary"}
+{"seq":9,"at":"2026-09-11T02:54:59.048Z","type":"step.started","stepId":"03_password","intent":"Type the service password into the sign-on form.","action":"type","declaredRisk":"sensitive"}
+{"seq":10,"at":"2026-09-11T02:54:59.048Z","type":"target.resolved","stepId":"03_password","rung":"primary","matchCount":1,"control":{"role":"textbox","name":"","frame":""}}
+{"seq":11,"at":"2026-09-11T02:54:59.080Z","type":"action.typed","stepId":"03_password","value":"«secret:core_password»"}
+{"seq":12,"at":"2026-09-11T02:54:59.082Z","type":"step.finished","stepId":"03_password","attempts":1,"rung":"primary"}
+{"seq":13,"at":"2026-09-11T02:54:59.082Z","type":"step.started","stepId":"04_sign_on","intent":"Submit the sign-on form to reach the servicing console.","action":"click","declaredRisk":"safe"}
+{"seq":14,"at":"2026-09-11T02:54:59.083Z","type":"target.resolved","stepId":"04_sign_on","rung":"primary","matchCount":1,"control":{"role":"button","name":"Sign On","frame":""}}
+{"seq":15,"at":"2026-09-11T02:54:59.154Z","type":"outcome.matched","stepId":"04_sign_on","outcome":"SESSION_EXPIRED","disposition":"needs_human","url":"http://127.0.0.1:62752/console"}
+{"seq":16,"at":"2026-09-11T02:54:59.173Z","type":"evidence.screenshot","file":"015-escalation-04_sign_on.png","reason":"escalation"}
+{"seq":17,"at":"2026-09-11T02:54:59.173Z","type":"escalation.raised","interventionId":"fff9ade2-8518-4db9-8aeb-38f33b75455a","stepId":"04_sign_on","reason":"business_outcome_needs_human","detail":"SESSION_EXPIRED: The console signed the service session out part-way through the flow. A replay cannot sign itself back in safely, so a person has to."}
+{"seq":18,"at":"2026-09-11T02:54:59.173Z","type":"escalation.resolved","interventionId":"fff9ade2-8518-4db9-8aeb-38f33b75455a","resolution":"unavailable","note":"no operator surface is attached to this run"}
+{"seq":19,"at":"2026-09-11T02:54:59.187Z","type":"evidence.screenshot","file":"018-outcome-session_expired.png","reason":"escalation"}

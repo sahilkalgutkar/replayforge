@@ -1,0 +1,44 @@
+{
+  "name": "replayforge",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Record LLM-discovered UI flows in legacy back-office apps as typed capability artifacts, then replay them deterministically without the model in the loop.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "replayforge": "./bin/replayforge.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "coverage": "vitest run --coverage",
+    "target": "tsx src/target/server.ts",
+    "cli": "tsx src/cli/main.ts",
+    "discover": "tsx src/cli/main.ts discover",
+    "replay": "tsx src/cli/main.ts replay",
+    "operator": "tsx src/cli/main.ts operator",
+    "capabilities": "tsx src/cli/main.ts capabilities"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.124.0",
+    "express": "^4.21.2",
+    "playwright": "^1.56.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.10.5",
+    "@typescript-eslint/eslint-plugin": "^8.20.0",
+    "@typescript-eslint/parser": "^8.20.0",
+    "@vitest/coverage-v8": "^2.1.8",
+    "eslint": "^9.18.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3",
+    "vitest": "^2.1.8"
+  }
+}

@@ -1,0 +1,927 @@
+{
+  "schemaVersion": 1,
+  "id": "meridian-core.member_savings_balance",
+  "version": 1,
+  "name": "member_savings_balance",
+  "title": "Look up a member’s regular savings balance",
+  "description": "Signs on to the Meridian Core servicing console, searches for a member by number, opens their record and returns the current balance and account number of their Regular Savings account.",
+  "app": {
+    "productId": "meridian-core",
+    "productVersion": "4.2.1",
+    "surface": "browser",
+    "entryUrl": "{{baseUrl}}/",
+    "bindingVariables": [
+      "baseUrl"
+    ],
+    "recordedOnTenant": "base"
+  },
+  "inputs": [
+    {
+      "name": "memberNumber",
+      "type": "string",
+      "required": true,
+      "description": "The member number to look up.",
+      "sensitivity": "internal",
+      "pattern": "^[0-9]{4,10}$"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "savingsBalance",
+      "type": "number",
+      "description": "Current balance of the member's Regular Savings account.",
+      "sensitivity": "internal",
+      "from": "savingsBalance",
+      "required": true
+    },
+    {
+      "name": "savingsAccountNumber",
+      "type": "string",
+      "description": "Account number of the member's Regular Savings account.",
+      "sensitivity": "internal",
+      "from": "savingsAccountNumber",
+      "required": true
+    }
+  ],
+  "secrets": [
+    {
+      "ref": "core_username",
+      "description": "Service teller user id.",
+      "envVar": "MERIDIAN_USERNAME"
+    },
+    {
+      "ref": "core_password",
+      "description": "Service teller password.",
+      "envVar": "MERIDIAN_PASSWORD"
+    }
+  ],
+  "preconditions": [],
+  "steps": [
+    {
+      "id": "00_open_entry",
+      "intent": "Open the application at its entry point.",
+      "action": {
+        "kind": "navigate",
+        "url": {
+          "kind": "template",
+          "template": "{{baseUrl}}/"
+        }
+      },
+      "risk": "safe",
+      "checkpoint": {
+        "kind": "textPresent",
+        "text": {
+          "mode": "contains",
+          "value": "Sign On"
+        }
+      },
+      "guards": [],
+      "timeoutMs": 15000,
+      "retries": {
+        "max": 1,
+        "backoffMs": 500
+      },
+      "onFailure": "fail",
+      "expectedControls": []
+    },
+    {
+      "id": "02_user_id",
+      "intent": "Type the service user id into the sign-on form.",
+      "action": {
+        "kind": "type",
+        "target": {
+          "description": "Type the service user id into the sign-on form.",
+          "primary": {
+            "role": "textbox",
+            "inTable": {
+              "rowContains": {
+                "mode": "equals",
+                "value": "User ID"
+              },
+              "column": 1
+            }
+          },
+          "fallbacks": [
+            {
+              "role": "textbox",
+              "nearbyText": {
+                "mode": "equals",
+                "value": "User ID"
+              },
+              "editable": true
+            }
+          ]
+        },
+        "value": {
+          "kind": "secret",
+          "ref": "core_username"
+        }
+      },
+      "risk": "sensitive",
+      "guards": [],
+      "timeoutMs": 15000,
+      "retries": {
+        "max": 1,
+        "backoffMs": 500
+      },
+      "onFailure": "fail",
+      "expectedFingerprint": "02cfb6b601325bf7",
+      "expectedControls": [
+        "Sign On"
+      ]
+    },
+    {
+      "id": "03_password",
+      "intent": "Type the service password into the sign-on form.",
+      "action": {
+        "kind": "type",
+        "target": {
+          "description": "Type the service password into the sign-on form.",
+          "primary": {
+            "role": "textbox",
+            "inTable": {
+              "rowContains": {
+                "mode": "equals",
+                "value": "Password"
+              },
+              "column": 1
+            }
+          },
+          "fallbacks": [
+            {
+              "role": "textbox",
+              "nearbyText": {
+                "mode": "equals",
+                "value": "Password"
+              },
+              "editable": true
+            }
+          ]
+        },
+        "value": {
+          "kind": "secret",
+          "ref": "core_password"
+        }
+      },
+      "risk": "sensitive",
+      "guards": [],
+      "timeoutMs": 15000,
+      "retries": {
+        "max": 1,
+        "backoffMs": 500
+      },
+      "onFailure": "fail",
+      "expectedFingerprint": "02cfb6b601325bf7",
+      "expectedControls": [
+        "Sign On"
+      ]
+    },
+    {
+      "id": "04_sign_on",
+      "intent": "Submit the sign-on form to reach the servicing console.",
+      "action": {
+        "kind": "click",
+        "target": {
+          "description": "Submit the sign-on form to reach the servicing console.",
+          "primary": {
+            "role": "button",
+            "name": {
+              "mode": "equals",
+              "value": "Sign On"
+            }
+          },
+          "fallbacks": [
+            {
+              "role": "button",
+              "name": {
+                "mode": "contains",
+                "value": "Sign On"
+              }
+            }
+          ]
+        }
+      },
+      "risk": "safe",
+      "checkpoint": {
+        "kind": "textPresent",
+        "text": {
+          "mode": "contains",
+          "value": "Home"
+        }
+      },
+      "guards": [],
+      "timeoutMs": 15000,
+      "retries": {
+        "max": 1,
+        "backoffMs": 500
+      },
+      "onFailure": "fail",
+      "expectedFingerprint": "02cfb6b601325bf7",
+      "expectedControls": [
+        "Sign On"
+      ]
+    },
+    {
+      "id": "05_member_search",
+      "intent": "Open the member search screen from the menu.",
+      "action": {
+        "kind": "click",
+        "target": {
+          "description": "Open the member search screen from the menu.",
+          "primary": {
+            "role": "link",
+            "name": {
+              "mode": "equals",
+              "value": "Member Search"
+            },
+            "framePath": [
+              "navFrame"
+            ]
+          },
+          "fallbacks": [
+            {
+              "role": "link",
+              "name": {
+                "mode": "contains",
+                "value": "Member Search"
+              },
+              "framePath": [
+                "navFrame"
+              ]
+            },
+            {
+              "role": "link",
+              "inTable": {
+                "rowContains": {
+                  "mode": "equals",
+                  "value": "Member Search"
+                },
+                "column": "MENU"
+              },
+              "framePath": [
+                "navFrame"
+              ]
+            }
+          ]
+        }
+      },
+      "risk": "sensitive",
+      "checkpoint": {
+        "kind": "textPresent",
+        "text": {
+          "mode": "contains",
+          "value": "Search"
+        }
+      },
+      "guards": [],
+      "timeoutMs": 15000,
+      "retries": {
+        "max": 1,
+        "backoffMs": 500
+      },
+      "onFailure": "fail",
+      "expectedFingerprint": "6c2af5b26101549a",
+      "expectedControls": [
+        "Home",
+        "Member Search",
+        "Transactions",
+        "Reports",
+        "Sign Off"
+      ]
+    },
+    {
+      "id": "06_member_number",
+      "intent": "Type the member number being looked up into the search field.",
+      "action": {
+        "kind": "type",
+        "target": {
+          "description": "Type the member number being looked up into the search field.",
+          "primary": {
+            "role": "textbox",
+            "inTable": {
+              "rowContains": {
+                "mode": "equals",
+                "value": "Member Number"
+              },
+              "column": 1
+            },
+            "framePath": [
+              "mainFrame"
+            ]
+          },
+          "fallbacks": [
+            {
+              "role": "textbox",
+              "nearbyText": {
+                "mode": "equals",
+                "value": "Member Number"
+              },
+              "framePath": [
+                "mainFrame"
+              ],
+              "editable": true
+            }
+          ]
+        },
+        "value": {
+          "kind": "param",
+          "name": "memberNumber"
+        }
+      },
+      "risk": "sensitive",
+      "guards": [],
+      "timeoutMs": 15000,
+      "retries": {
+        "max": 1,
+        "backoffMs": 500
+      },
+      "onFailure": "fail",
+      "expectedFingerprint": "5d0f5a8ca52c6945",
+      "expectedControls": [
+        "Home",
+        "Member Search",
+        "Transactions",
+        "Reports",
+        "Sign Off",
+        "Search"
+      ]
+    },
+    {
+      "id": "07_search",
+      "intent": "Run the member search.",
+      "action": {
+        "kind": "click",
+        "target": {
+          "description": "Run the member search.",
+          "primary": {
+            "role": "button",
+            "name": {
+              "mode": "equals",
+              "value": "Search"
+            },
+            "framePath": [
+              "mainFrame"
+            ]
+          },
+          "fallbacks": [
+            {
+              "role": "button",
+              "name": {
+                "mode": "contains",
+                "value": "Search"
+              },
+              "framePath": [
+                "mainFrame"
+              ]
+            },
+            {
+              "role": "button",
+              "inTable": {
+                "rowContains": {
+                  "mode": "equals",
+                  "value": "Member Number"
+                },
+                "column": 2
+              },
+              "framePath": [
+                "mainFrame"
+              ]
+            }
+          ]
+        }
+      },
+      "risk": "safe",
+      "checkpoint": {
+        "kind": "textPresent",
+        "text": {
+          "mode": "contains",
+          "value": "{{memberNumber}}"
+        }
+      },
+      "guards": [],
+      "timeoutMs": 15000,
+      "retries": {
+        "max": 1,
+        "backoffMs": 500
+      },
+      "onFailure": "fail",
+      "expectedFingerprint": "5d0f5a8ca52c6945",
+      "expectedControls": [
+        "Home",
+        "Member Search",
+        "Transactions",
+        "Reports",
+        "Sign Off",
+        "Search"
+      ]
+    },
+    {
+      "id": "08_10021",
+      "intent": "Open the member record from the search results.",
+      "action": {
+        "kind": "click",
+        "target": {
+          "description": "Open the member record from the search results.",
+          "primary": {
+            "role": "link",
+            "name": {
+              "mode": "equals",
+              "value": "{{memberNumber}}"
+            },
+            "framePath": [
+              "mainFrame"
+            ]
+          },
+          "fallbacks": [
+            {
+              "role": "link",
+              "name": {
+                "mode": "contains",
+                "value": "{{memberNumber}}"
+              },
+              "framePath": [
+                "mainFrame"
+              ]
+            },
+            {
+              "role": "link",
+              "inTable": {
+                "rowContains": {
+                  "mode": "equals",
+                  "value": "10021"
+                },
+                "column": "Member Number"
+              },
+              "framePath": [
+                "mainFrame"
+              ]
+            }
+          ]
+        }
+      },
+      "risk": "sensitive",
+      "checkpoint": {
+        "kind": "textPresent",
+        "text": {
+          "mode": "contains",
+          "value": "Profile"
+        }
+      },
+      "guards": [],
+      "timeoutMs": 15000,
+      "retries": {
+        "max": 1,
+        "backoffMs": 500
+      },
+      "onFailure": "fail",
+      "expectedFingerprint": "a3f897ac71174967",
+      "expectedControls": [
+        "Home",
+        "Member Search",
+        "Transactions",
+        "Reports",
+        "Sign Off",
+        "Back to search"
+      ]
+    },
+    {
+      "id": "09_accounts",
+      "intent": "Switch to the Accounts tab on the member record.",
+      "action": {
+        "kind": "click",
+        "target": {
+          "description": "Switch to the Accounts tab on the member record.",
+          "primary": {
+            "role": "link",
+            "name": {
+              "mode": "equals",
+              "value": "Accounts"
+            },
+            "framePath": [
+              "mainFrame"
+            ]
+          },
+          "fallbacks": [
+            {
+              "role": "link",
+              "name": {
+                "mode": "contains",
+                "value": "Accounts"
+              },
+              "framePath": [
+                "mainFrame"
+              ]
+            },
+            {
+              "role": "link",
+              "inTable": {
+                "rowContains": {
+                  "mode": "equals",
+                  "value": "Profile"
+                },
+                "column": 2
+              },
+              "framePath": [
+                "mainFrame"
+              ]
+            }
+          ]
+        }
+      },
+      "risk": "sensitive",
+      "checkpoint": {
+        "kind": "textPresent",
+        "text": {
+          "mode": "contains",
+          "value": "Open Sub-Account"
+        }
+      },
+      "guards": [],
+      "timeoutMs": 15000,
+      "retries": {
+        "max": 1,
+        "backoffMs": 500
+      },
+      "onFailure": "fail",
+      "expectedFingerprint": "40d83fb78b0a6e78",
+      "expectedControls": [
+        "Home",
+        "Member Search",
+        "Transactions",
+        "Reports",
+        "Sign Off",
+        "Profile",
+        "Accounts",
+        "Back to search"
+      ]
+    },
+    {
+      "id": "10_4_182_55",
+      "intent": "Read the current balance from the Regular Savings row of the accounts grid.",
+      "action": {
+        "kind": "read",
+        "target": {
+          "description": "Read the current balance from the Regular Savings row of the accounts grid.",
+          "primary": {
+            "role": "cell",
+            "inTable": {
+              "rowContains": {
+                "mode": "equals",
+                "value": "Regular Savings"
+              },
+              "column": "Current Balance"
+            },
+            "framePath": [
+              "mainFrame"
+            ]
+          },
+          "fallbacks": [
+            {
+              "role": "cell",
+              "inTable": {
+                "rowContains": {
+                  "mode": "equals",
+                  "value": "Regular Savings"
+                },
+                "column": 3
+              },
+              "framePath": [
+                "mainFrame"
+              ]
+            },
+            {
+              "role": "cell",
+              "name": {
+                "mode": "equals",
+                "value": "$4,182.55"
+              },
+              "framePath": [
+                "mainFrame"
+              ]
+            }
+          ]
+        },
+        "into": "savingsBalance",
+        "from": "text",
+        "transform": {
+          "kind": "currencyToNumber"
+        }
+      },
+      "risk": "safe",
+      "guards": [],
+      "timeoutMs": 15000,
+      "retries": {
+        "max": 1,
+        "backoffMs": 500
+      },
+      "onFailure": "fail",
+      "expectedFingerprint": "e9ed823d6a6643d0",
+      "expectedControls": [
+        "Home",
+        "Member Search",
+        "Transactions",
+        "Reports",
+        "Sign Off",
+        "Profile",
+        "Accounts",
+        "Open Sub-Account",
+        "Back to search"
+      ]
+    },
+    {
+      "id": "11_s0001_10021",
+      "intent": "Read the account number from the Regular Savings row of the accounts grid.",
+      "action": {
+        "kind": "read",
+        "target": {
+          "description": "Read the account number from the Regular Savings row of the accounts grid.",
+          "primary": {
+            "role": "cell",
+            "inTable": {
+              "rowContains": {
+                "mode": "equals",
+                "value": "Regular Savings"
+              },
+              "column": "Account Number"
+            },
+            "framePath": [
+              "mainFrame"
+            ]
+          },
+          "fallbacks": [
+            {
+              "role": "cell",
+              "inTable": {
+                "rowContains": {
+                  "mode": "equals",
+                  "value": "Regular Savings"
+                },
+                "column": 1
+              },
+              "framePath": [
+                "mainFrame"
+              ]
+            },
+            {
+              "role": "cell",
+              "name": {
+                "mode": "equals",
+                "value": "S0001-10021"
+              },
+              "framePath": [
+                "mainFrame"
+              ]
+            }
+          ]
+        },
+        "into": "savingsAccountNumber",
+        "from": "text",
+        "transform": {
+          "kind": "trim"
+        }
+      },
+      "risk": "safe",
+      "guards": [],
+      "timeoutMs": 15000,
+      "retries": {
+        "max": 1,
+        "backoffMs": 500
+      },
+      "onFailure": "fail",
+      "expectedFingerprint": "e9ed823d6a6643d0",
+      "expectedControls": [
+        "Home",
+        "Member Search",
+        "Transactions",
+        "Reports",
+        "Sign Off",
+        "Profile",
+        "Accounts",
+        "Open Sub-Account",
+        "Back to search"
+      ]
+    }
+  ],
+  "outcomes": [
+    {
+      "name": "MEMBER_NOT_FOUND",
+      "description": "The core holds no member with that number. The search screen reports it in place of a results table; this is a legitimate answer to the caller's question, not a failure.",
+      "when": {
+        "kind": "textPresent",
+        "text": {
+          "mode": "contains",
+          "value": "No records found"
+        }
+      },
+      "terminal": true,
+      "disposition": "answer"
+    },
+    {
+      "name": "ACCESS_DENIED",
+      "description": "The signed-on teller profile is not entitled to this member record. Detected by HTTP status as well as wording, since the status does not depend on how the vendor phrases the message.",
+      "when": {
+        "kind": "any",
+        "of": [
+          {
+            "kind": "textPresent",
+            "text": {
+              "mode": "contains",
+              "value": "Access denied"
+            }
+          },
+          {
+            "kind": "httpStatusIn",
+            "statuses": [
+              403
+            ]
+          }
+        ]
+      },
+      "terminal": true,
+      "disposition": "needs_human"
+    },
+    {
+      "name": "SESSION_EXPIRED",
+      "description": "The console signed the service session out part-way through the flow. A replay cannot sign itself back in safely, so a person has to.",
+      "when": {
+        "kind": "any",
+        "of": [
+          {
+            "kind": "textPresent",
+            "text": {
+              "mode": "contains",
+              "value": "session has expired"
+            }
+          },
+          {
+            "kind": "httpStatusIn",
+            "statuses": [
+              401
+            ]
+          }
+        ]
+      },
+      "terminal": true,
+      "disposition": "needs_human"
+    },
+    {
+      "name": "CORE_UNAVAILABLE",
+      "description": "The core returned an error page instead of a screen. Detected by status code, which is wording-independent.",
+      "when": {
+        "kind": "any",
+        "of": [
+          {
+            "kind": "textPresent",
+            "text": {
+              "mode": "contains",
+              "value": "An unexpected error occurred"
+            }
+          },
+          {
+            "kind": "httpStatusIn",
+            "statuses": [
+              500,
+              502,
+              503
+            ]
+          }
+        ]
+      },
+      "terminal": true,
+      "disposition": "needs_human"
+    }
+  ],
+  "successCheckpoint": {
+    "kind": "all",
+    "of": [
+      {
+        "kind": "targetPresent",
+        "target": {
+          "description": "Read the current balance from the Regular Savings row of the accounts grid.",
+          "primary": {
+            "role": "cell",
+            "inTable": {
+              "rowContains": {
+                "mode": "equals",
+                "value": "Regular Savings"
+              },
+              "column": "Current Balance"
+            },
+            "framePath": [
+              "mainFrame"
+            ]
+          },
+          "fallbacks": [
+            {
+              "role": "cell",
+              "inTable": {
+                "rowContains": {
+                  "mode": "equals",
+                  "value": "Regular Savings"
+                },
+                "column": 3
+              },
+              "framePath": [
+                "mainFrame"
+              ]
+            },
+            {
+              "role": "cell",
+              "name": {
+                "mode": "equals",
+                "value": "$4,182.55"
+              },
+              "framePath": [
+                "mainFrame"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "kind": "targetPresent",
+        "target": {
+          "description": "Read the account number from the Regular Savings row of the accounts grid.",
+          "primary": {
+            "role": "cell",
+            "inTable": {
+              "rowContains": {
+                "mode": "equals",
+                "value": "Regular Savings"
+              },
+              "column": "Account Number"
+            },
+            "framePath": [
+              "mainFrame"
+            ]
+          },
+          "fallbacks": [
+            {
+              "role": "cell",
+              "inTable": {
+                "rowContains": {
+                  "mode": "equals",
+                  "value": "Regular Savings"
+                },
+                "column": 1
+              },
+              "framePath": [
+                "mainFrame"
+              ]
+            },
+            {
+              "role": "cell",
+              "name": {
+                "mode": "equals",
+                "value": "S0001-10021"
+              },
+              "framePath": [
+                "mainFrame"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "policy": {
+    "allowedOrigins": [
+      "{{baseUrl}}"
+    ],
+    "allowedRoutes": [
+      "/",
+      "/console",
+      "/content/home",
+      "/content/member-search",
+      "/content/member/*",
+      "/content/member/*/accounts",
+      "/nav"
+    ],
+    "allowedActions": [
+      "click",
+      "navigate",
+      "read",
+      "type",
+      "waitFor"
+    ],
+    "maxRiskWithoutApproval": "sensitive",
+    "maxSteps": 19,
+    "maxDurationMs": 180000
+  },
+  "approval": {
+    "state": "draft"
+  },
+  "stability": {
+    "runs": 0,
+    "successes": 0,
+    "fallbackResolutions": 0
+  },
+  "tenantOverrides": {},
+  "provenance": {
+    "discoveredAt": "2026-09-11T02:54:57.660Z",
+    "discoveryRunId": "discovery",
+    "model": "Claude Opus 5 (Claude Code session, via the file bridge)",
+    "promptVersion": "discovery/2026-09-09",
+    "humanEdits": []
+  }
+}

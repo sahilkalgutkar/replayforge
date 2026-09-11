@@ -1,0 +1,126 @@
+{
+  "status": "success",
+  "outputs": {
+    "savingsBalance": 58004.12,
+    "savingsAccountNumber": "S0002-10022"
+  },
+  "trace": {
+    "runId": "replay-success",
+    "capabilityId": "meridian-core.member_savings_balance",
+    "capabilityVersion": 1,
+    "tenantId": "base",
+    "evidenceDir": "evidence/local-scratch/replay-success",
+    "steps": [
+      {
+        "stepId": "00_open_entry",
+        "intent": "Open the application at its entry point.",
+        "status": "ok",
+        "risk": "safe",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 24
+      },
+      {
+        "stepId": "02_user_id",
+        "intent": "Type the service user id into the sign-on form.",
+        "status": "ok",
+        "risk": "sensitive",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 25
+      },
+      {
+        "stepId": "03_password",
+        "intent": "Type the service password into the sign-on form.",
+        "status": "ok",
+        "risk": "sensitive",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 39
+      },
+      {
+        "stepId": "04_sign_on",
+        "intent": "Submit the sign-on form to reach the servicing console.",
+        "status": "ok",
+        "risk": "safe",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 62
+      },
+      {
+        "stepId": "05_member_search",
+        "intent": "Open the member search screen from the menu.",
+        "status": "ok",
+        "risk": "sensitive",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 71
+      },
+      {
+        "stepId": "06_member_number",
+        "intent": "Type the member number being looked up into the search field.",
+        "status": "ok",
+        "risk": "sensitive",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 17
+      },
+      {
+        "stepId": "07_search",
+        "intent": "Run the member search.",
+        "status": "ok",
+        "risk": "safe",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 60
+      },
+      {
+        "stepId": "08_10021",
+        "intent": "Open the member record from the search results.",
+        "status": "ok",
+        "risk": "sensitive",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 64
+      },
+      {
+        "stepId": "09_accounts",
+        "intent": "Switch to the Accounts tab on the member record.",
+        "status": "ok",
+        "risk": "sensitive",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 66
+      },
+      {
+        "stepId": "10_4_182_55",
+        "intent": "Read the current balance from the Regular Savings row of the accounts grid.",
+        "status": "ok",
+        "risk": "safe",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 7
+      },
+      {
+        "stepId": "11_s0001_10021",
+        "intent": "Read the account number from the Regular Savings row of the accounts grid.",
+        "status": "ok",
+        "risk": "safe",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 7
+      }
+    ],
+    "durationMs": 452
+  }
+}
