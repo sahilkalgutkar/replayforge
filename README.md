@@ -10,8 +10,8 @@ Work in progress.
 ## Status
 
 - [x] Demo target app
-- [ ] Perception and element targeting
-- [ ] Artifact schema
+- [x] Perception and element targeting
+- [x] Artifact schema
 - [ ] Guardrails and replay engine
 - [ ] Discovery agent
 - [ ] Human handoff, CLI and write-up
@@ -56,6 +56,48 @@ Modes: `session-timeout`, `record-not-found`, `validation-error`,
 `permission-denied`, `interstitial`, `slow`, `server-error`. A fault fires once
 unless you pass `count`. Without `scope=global` it only applies to the session
 that made the request, which is what the tests use.
+
+## Looking at a screen
+
+Nothing above `src/surface` knows about the DOM. A screen becomes a flat list of
+nodes with a role, a name, a value and, where it applies, the row and column of
+the table cell it sits in. That shape exists in the browser's accessibility tree
+and in the macOS and Windows accessibility APIs too, so a flow recorded against
+one kind of application isn't automatically stuck there.
+
+The awkward part is naming. Plenty of inputs in the demo app have no id, no
+label and no ARIA, so the extractor works out a name from the cell next to the
+control, or the column header above it. That's what makes "the field labelled
+Member Number" a thing you can point at.
+
+Finding a control again goes through one shared resolver, with two rules I
+wanted from the start:
+
+- If a target matches more than one control and the flow didn't say which, that's
+  a failure, not a guess. Quietly taking the first match is how you click the
+  wrong row in a grid and still report success.
+- A target can carry fallbacks, and the result says which one matched. A step
+  that starts winning on a fallback is the first sign the screen has changed.
+
+## Capability artifacts
+
+A recorded flow is a contract, not a macro. Inputs, outputs, outcomes, risk and
+approval state are declared separately from the steps, so whatever calls it can
+decide whether to call it without reading the flow, and a person can review it
+the same way.
+
+The part I care most about is that expected results are declared rather than
+inferred. "No such member" is an answer the caller asked for, so it's an entry
+in `outcomes` with its own detection rule, not an exception thrown from step
+seven. Conditions a replay is allowed to shrug off are separate again, as capped
+guards on the steps that can meet them.
+
+Artifacts are keyed on the product rather than the institution, since plenty of
+credit unions run the same vendor software. A tenant can patch a control, a
+literal or a checkpoint, and cannot touch the contract.
+
+Saving always writes a new version. Editing the file someone approved isn't a
+storage detail.
 
 ## Tests
 
