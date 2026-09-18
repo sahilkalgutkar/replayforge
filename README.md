@@ -12,7 +12,7 @@ Work in progress.
 - [x] Demo target app
 - [x] Perception and element targeting
 - [x] Artifact schema
-- [ ] Guardrails and replay engine
+- [x] Guardrails and replay engine
 - [ ] Discovery agent
 - [ ] Human handoff, CLI and write-up
 
@@ -98,6 +98,48 @@ literal or a checkpoint, and cannot touch the contract.
 
 Saving always writes a new version. Editing the file someone approved isn't a
 storage detail.
+
+## Replaying a capability
+
+Replay doesn't involve a model at all. Every branch a run can take was declared
+in the artifact, so the same inputs give the same steps, and when something goes
+wrong you can point at a line in the file rather than a transcript.
+
+A run ends in one of four ways, and I kept them separate on purpose:
+
+- **success**, with typed outputs;
+- **business outcome**, a declared result like `MEMBER_NOT_FOUND` that is an
+  answer rather than an error;
+- **escalated**, meaning a person has it or needs to;
+- **failed**, with the step, what was expected, what was on screen, and a
+  screenshot.
+
+Merging any two of those makes the caller behave badly. Treat "no such member"
+as a failure and it retries a lookup that can't succeed; treat an escalation as
+a failure and it retries something a person is already looking at.
+
+Arguments and credentials are checked before the browser is touched. Failing
+there costs nothing; failing four screens into a banking console leaves a
+half-finished flow for someone to clean up.
+
+## Guardrails
+
+Discovery and replay both go through one policy engine, so the two can't drift
+apart. It checks an allowlist of origins, routes and action types (origins match
+exactly; suffix matching lets `evilbank.com` through a check for `bank.com`), and
+it classifies each action as safe, sensitive or irreversible.
+
+Risk is worked out again at replay from what the live control says, and the
+stricter answer wins. If a button that said "Continue" when the flow was
+recorded now says "Post Account", that gets caught. Irreversible steps are
+blocked rather than just flagged, because in this setting one mistake is an
+unintended funds movement. A capability still in draft can read but can't write
+without someone confirming.
+
+Anything written to a log or sent anywhere is redacted first: known secret
+values by name, then anything shaped like an SSN, email, card or account number.
+Screenshots can't be redacted that way, so they're only taken on failure by
+default.
 
 ## Tests
 
