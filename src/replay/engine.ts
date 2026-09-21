@@ -206,6 +206,7 @@ class ReplayRun {
     }
     return {
       ...step,
+      intent: deepSubstitute(step.intent, this.params, this.bindings),
       action: materialised,
       ...(step.checkpoint ? { checkpoint: deepSubstitute(step.checkpoint, this.params, this.bindings) } : {}),
       guards: step.guards.map((guard) => deepSubstitute(guard, this.params, this.bindings)),
