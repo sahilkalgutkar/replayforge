@@ -13,7 +13,7 @@ Work in progress.
 - [x] Perception and element targeting
 - [x] Artifact schema
 - [x] Guardrails and replay engine
-- [ ] Discovery agent
+- [x] Discovery agent
 - [ ] Human handoff, CLI and write-up
 
 ## Demo app
@@ -98,6 +98,45 @@ literal or a checkpoint, and cannot touch the contract.
 
 Saving always writes a new version. Editing the file someone approved isn't a
 storage detail.
+
+## Discovery
+
+Discovery is the only part that uses a model, and it runs locally through
+[Ollama](https://ollama.com) with `qwen3:14b`, so nothing leaves the machine.
+That seemed like the right default for something pointed at banking screens.
+
+```bash
+ollama pull qwen3:14b
+```
+
+The model never writes a selector. It gets the screen as a numbered list of
+controls and picks one by number; synthesis then works out how to find that
+control again, tests each candidate against the screen it came from, and keeps
+the ones that match exactly one control. It also works out a check for each
+step, the risk, and which routes the flow is allowed to visit.
+
+A few things I ran into getting this working on a local model:
+
+- **Tool calling was unreliable.** Ollama's tool-call parser silently dropped
+  3 of 8 calls from qwen3:14b in testing, returning neither text nor a call. I
+  constrain the reply to a JSON schema of the tools instead, which gave a usable
+  decision 8 times out of 8.
+- **The whole conversation doesn't fit.** Each turn sends the goal, a short
+  list of steps taken, the last result and the current screen, so the goal
+  never falls out of a small context window.
+- **It got stuck retyping the user id.** The model typed the placeholder
+  `{{core_username}}`, then saw the field redacted as something else and typed
+  it again, twenty times. Filled credentials now show the placeholder it typed,
+  and a model that repeats the same step is told so and then stopped.
+- **A happy-path run never sees a failure screen**, so the model can't know how
+  "no such member" looks. After it finishes, the draft gets replayed with a
+  value that shouldn't exist, and the model names the screen the app actually
+  shows. Detection text is only kept if it's on that screen. Every flow also
+  gets a catch-all for HTTP error statuses, which covers access denied, expired
+  sessions and error pages in the demo app; apps that answer 200 with an error
+  page need that wording added by whoever reviews the flow.
+
+A full run takes about two and a half minutes on an M1 Pro.
 
 ## Replaying a capability
 
