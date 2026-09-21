@@ -54,9 +54,14 @@ export function classifyAction(
     case 'pressKey':
       return action.key === 'Enter' ? 'sensitive' : 'safe';
     case 'click': {
-      const label = [node?.name, node?.value, node?.text].filter(Boolean).join(' ').trim();
+      // A link's name and text are usually the same string, so joining them
+      // blindly gives "Accounts Accounts" and misses every anchored pattern.
+      const label = [...new Set([node?.name, node?.value, node?.text].filter(Boolean))].join(' ').trim();
       if (label === '') return 'sensitive';
       if (vocabulary.irreversible.some((pattern) => pattern.test(label))) return 'irreversible';
+      // In these apps a link opens a screen; anything that posts is a button.
+      // A link whose wording is irreversible was already caught above.
+      if (node?.role === 'link') return 'safe';
       if (vocabulary.navigational.some((pattern) => pattern.test(label))) return 'safe';
       return 'sensitive';
     }

@@ -87,6 +87,20 @@ describe('risk', () => {
     expect(classifyAction(click, node({ role: 'button', name: 'Acknowledge' }))).toBe('safe');
   });
 
+  it('treats a link as navigation even when its name and text repeat', () => {
+    // Links carry the same string as name and text; joining them blindly gave
+    // "Accounts Accounts", which missed every anchored pattern.
+    expect(classifyAction(click, node({ role: 'link', name: 'Accounts', text: 'Accounts' }))).toBe('safe');
+    expect(classifyAction(click, node({ role: 'link', name: 'Member Search', text: 'Member Search' }))).toBe('safe');
+    expect(classifyAction(click, node({ role: 'link', name: '10021', text: '10021' }))).toBe('safe');
+  });
+
+  it('still catches an irreversible link', () => {
+    expect(classifyAction(click, node({ role: 'link', name: 'Delete Account', text: 'Delete Account' }))).toBe(
+      'irreversible',
+    );
+  });
+
   it('errs upward for a click it can’t read', () => {
     expect(classifyAction(click)).toBe('sensitive');
     expect(classifyAction(click, node({ role: 'button', name: '' }))).toBe('sensitive');
