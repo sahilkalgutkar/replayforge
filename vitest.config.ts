@@ -11,8 +11,9 @@ export default defineConfig({
       reporter: ['text', 'lcov'],
       include: ['src/**/*.ts'],
       exclude: [
-        // Just starts the two servers.
+        // Just start servers and parse argv; the logic they call is tested.
         'src/target/server.ts',
+        'src/cli/main.ts',
         // Runs inside the browser page, so v8 in Node can't instrument it.
         // Covered by tests/surface/extraction-naming.test.ts instead.
         'src/surface/browser/extract.ts',

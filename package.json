@@ -13,7 +13,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "coverage": "vitest run --coverage",
-    "target": "node --env-file-if-exists=.env --import tsx src/target/server.ts"
+    "target": "node --env-file-if-exists=.env --import tsx src/target/server.ts",
+    "cli": "node --env-file-if-exists=.env --import tsx src/cli/main.ts"
   },
   "dependencies": {
     "express": "^4.21.2",
