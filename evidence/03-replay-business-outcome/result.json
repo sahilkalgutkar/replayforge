@@ -1,0 +1,85 @@
+{
+  "status": "business_outcome",
+  "outcome": "MEMBER_NOT_FOUND",
+  "disposition": "answer",
+  "description": "The member record does not exist in the system.",
+  "outputs": {},
+  "trace": {
+    "runId": "replay-not-found",
+    "capabilityId": "meridian-core.member_savings_balance",
+    "capabilityVersion": 1,
+    "tenantId": "base",
+    "evidenceDir": "evidence/.scratch/replay-not-found",
+    "steps": [
+      {
+        "stepId": "00_open",
+        "intent": "Open the application at its entry point.",
+        "status": "ok",
+        "risk": "safe",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 18
+      },
+      {
+        "stepId": "01_user_id",
+        "intent": "Enter the username to sign into the application.",
+        "status": "ok",
+        "risk": "sensitive",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 24
+      },
+      {
+        "stepId": "02_password",
+        "intent": "Enter the password to sign into the application.",
+        "status": "ok",
+        "risk": "sensitive",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 39
+      },
+      {
+        "stepId": "03_sign_on",
+        "intent": "Sign on to the Meridian Core application using the provided credentials.",
+        "status": "ok",
+        "risk": "safe",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 62
+      },
+      {
+        "stepId": "04_member_search",
+        "intent": "Navigate to the Member Search function to look up member 88888.",
+        "status": "ok",
+        "risk": "safe",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 71
+      },
+      {
+        "stepId": "05_member_number",
+        "intent": "Enter the member number 88888 into the Member Number field.",
+        "status": "ok",
+        "risk": "sensitive",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 16
+      },
+      {
+        "stepId": "06_search",
+        "intent": "Search for member 88888 using the Member Number field.",
+        "status": "skipped",
+        "risk": "safe",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 0
+      }
+    ],
+    "durationMs": 297
+  }
+}

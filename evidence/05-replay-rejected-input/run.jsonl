@@ -1,0 +1,2 @@
+{"seq":1,"at":"2026-09-22T15:43:13.375Z","type":"run.rejected","issues":[{"name":"memberNumber","message":"does not match the required pattern ^[0-9]{4,10}$"}]}
+{"seq":2,"at":"2026-09-22T15:43:13.376Z","type":"run.finished","status":"failed","category":"input_invalid"}
