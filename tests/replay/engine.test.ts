@@ -181,6 +181,11 @@ describe('guardrails', () => {
     if (result.status !== 'escalated') throw new Error(summariseResult(result));
     expect(result.reason).toContain('draft');
     expect(result.stepId).toBe('enter_user');
+    // It ends like any other run: a result file and a closing event.
+    const written = JSON.parse(await readFile(join(result.trace.evidenceDir, 'result.json'), 'utf8')) as { status: string };
+    expect(written.status).toBe('escalated');
+    const log = await readFile(join(result.trace.evidenceDir, 'run.jsonl'), 'utf8');
+    expect(log).toContain('"type":"run.finished","status":"escalated"');
   });
 
   it('runs a draft when the caller confirms it', async () => {
