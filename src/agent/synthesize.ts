@@ -488,7 +488,7 @@ export function synthesiseArtifact(request: SynthesisRequest): CapabilityArtifac
     version: 1,
     name: request.name,
     title: request.title,
-    description: request.summary,
+    description: parameteriseText(request.summary, request.inputs),
     app: {
       productId: request.productId,
       ...(request.productVersion ? { productVersion: request.productVersion } : {}),
