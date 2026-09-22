@@ -128,6 +128,28 @@ export type Primitive =
   | { readonly kind: 'waitForIdle'; readonly timeoutMs: number };
 
 /**
+ * A person driving a live session during a handoff. Separate from Surface
+ * because it's a different kind of operation: a person points at pixels and
+ * types rather than resolving a target. A surface that can't offer it can still
+ * be automated, it just can't be handed over.
+ */
+export interface DirectControl {
+  clickAt(x: number, y: number): Promise<void>;
+  typeText(text: string): Promise<void>;
+  pressKey(key: string): Promise<void>;
+  viewport(): Promise<{ readonly width: number; readonly height: number }>;
+}
+
+export function supportsDirectControl(surface: unknown): surface is DirectControl {
+  const candidate = surface as Partial<DirectControl> | null;
+  return (
+    typeof candidate?.clickAt === 'function' &&
+    typeof candidate.typeText === 'function' &&
+    typeof candidate.pressKey === 'function'
+  );
+}
+
+/**
  * A surface has two jobs: flatten what it can see into UiNode[], and run a
  * Primitive against a node it emitted. Matching a recorded target to a node is
  * deliberately not one of them, so two surfaces can't disagree about what a
