@@ -18,7 +18,7 @@
         "risk": "safe",
         "attempts": 1,
         "guardsFired": [],
-        "durationMs": 25
+        "durationMs": 23
       },
       {
         "stepId": "01_user_id",
@@ -28,7 +28,7 @@
         "rung": "primary",
         "attempts": 1,
         "guardsFired": [],
-        "durationMs": 157
+        "durationMs": 75
       },
       {
         "stepId": "02_password",
@@ -38,7 +38,7 @@
         "rung": "primary",
         "attempts": 1,
         "guardsFired": [],
-        "durationMs": 40
+        "durationMs": 39
       },
       {
         "stepId": "03_sign_on",
@@ -48,7 +48,7 @@
         "rung": "primary",
         "attempts": 1,
         "guardsFired": [],
-        "durationMs": 63
+        "durationMs": 64
       },
       {
         "stepId": "04_member_search",
@@ -58,7 +58,7 @@
         "rung": "primary",
         "attempts": 1,
         "guardsFired": [],
-        "durationMs": 69
+        "durationMs": 68
       },
       {
         "stepId": "05_member_number",
@@ -68,7 +68,7 @@
         "rung": "primary",
         "attempts": 1,
         "guardsFired": [],
-        "durationMs": 20
+        "durationMs": 18
       },
       {
         "stepId": "06_search",
@@ -78,7 +78,7 @@
         "rung": "primary",
         "attempts": 1,
         "guardsFired": [],
-        "durationMs": 59
+        "durationMs": 61
       },
       {
         "stepId": "07_member_number",
@@ -88,7 +88,7 @@
         "rung": "primary",
         "attempts": 1,
         "guardsFired": [],
-        "durationMs": 62
+        "durationMs": 61
       },
       {
         "stepId": "08_accounts",
@@ -98,7 +98,7 @@
         "rung": "primary",
         "attempts": 1,
         "guardsFired": [],
-        "durationMs": 67
+        "durationMs": 49
       },
       {
         "stepId": "09_read_account_number",
@@ -118,9 +118,9 @@
         "rung": "primary",
         "attempts": 1,
         "guardsFired": [],
-        "durationMs": 7
+        "durationMs": 6
       }
     ],
-    "durationMs": 582
+    "durationMs": 478
   }
 }

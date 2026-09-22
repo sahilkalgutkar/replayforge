@@ -1,6 +1,6 @@
 {
   "status": "escalated",
-  "interventionId": "30bd20c1-7b03-451f-91bf-775286c9f186",
+  "interventionId": "94e3af46-f5f5-4a06-b91f-ea752ea3b55d",
   "reason": "HTTP_ERROR: The application answered a screen with an HTTP error status (401, 403 or 5xx), such as a signed-out session, a permission denial or a server fault. Added to every recorded flow.",
   "stepId": "03_sign_on",
   "trace": {
@@ -17,7 +17,7 @@
         "risk": "safe",
         "attempts": 1,
         "guardsFired": [],
-        "durationMs": 11
+        "durationMs": 14
       },
       {
         "stepId": "01_user_id",
@@ -27,7 +27,7 @@
         "rung": "primary",
         "attempts": 1,
         "guardsFired": [],
-        "durationMs": 23
+        "durationMs": 25
       },
       {
         "stepId": "02_password",
@@ -37,7 +37,7 @@
         "rung": "primary",
         "attempts": 1,
         "guardsFired": [],
-        "durationMs": 35
+        "durationMs": 41
       },
       {
         "stepId": "03_sign_on",
@@ -49,6 +49,6 @@
         "durationMs": 0
       }
     ],
-    "durationMs": 155
+    "durationMs": 200
   }
 }

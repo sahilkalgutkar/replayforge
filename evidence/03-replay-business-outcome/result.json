@@ -18,7 +18,7 @@
         "risk": "safe",
         "attempts": 1,
         "guardsFired": [],
-        "durationMs": 18
+        "durationMs": 33
       },
       {
         "stepId": "01_user_id",
@@ -38,7 +38,7 @@
         "rung": "primary",
         "attempts": 1,
         "guardsFired": [],
-        "durationMs": 39
+        "durationMs": 42
       },
       {
         "stepId": "03_sign_on",
@@ -58,7 +58,7 @@
         "rung": "primary",
         "attempts": 1,
         "guardsFired": [],
-        "durationMs": 71
+        "durationMs": 69
       },
       {
         "stepId": "05_member_number",
@@ -68,7 +68,7 @@
         "rung": "primary",
         "attempts": 1,
         "guardsFired": [],
-        "durationMs": 16
+        "durationMs": 17
       },
       {
         "stepId": "06_search",
@@ -80,6 +80,6 @@
         "durationMs": 0
       }
     ],
-    "durationMs": 297
+    "durationMs": 314
   }
 }

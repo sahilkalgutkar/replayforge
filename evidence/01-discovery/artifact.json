@@ -4,7 +4,7 @@
   "version": 1,
   "name": "member_savings_balance",
   "title": "Look up a member’s regular savings balance",
-  "description": "Looked up member 10021 and read their Regular Savings balance and account number.",
+  "description": "Looked up member {{memberNumber}} and read their Regular Savings balance and account number.",
   "app": {
     "productId": "meridian-core",
     "productVersion": "4.2.1",
@@ -923,7 +923,7 @@
   },
   "tenantOverrides": {},
   "provenance": {
-    "discoveredAt": "2026-09-22T15:43:02.148Z",
+    "discoveredAt": "2026-09-22T15:56:23.454Z",
     "discoveryRunId": "discovery",
     "model": "qwen3:14b",
     "promptVersion": "discovery/2026-09-21",

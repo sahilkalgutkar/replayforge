@@ -1,54 +1,54 @@
-{"seq":1,"at":"2026-09-22T15:43:13.557Z","type":"run.started","runId":"replay-handoff","capability":{"id":"meridian-core.member_savings_balance","version":1,"name":"member_savings_balance"},"tenantId":"base","approval":"draft","inputs":{"memberNumber":"10021"},"overrides":{"patched":[],"inserted":[],"skipped":[]}}
-{"seq":2,"at":"2026-09-22T15:43:13.561Z","type":"step.started","stepId":"00_open","intent":"Open the application at its entry point.","action":"navigate","declaredRisk":"safe"}
-{"seq":3,"at":"2026-09-22T15:43:13.585Z","type":"checkpoint.passed","stepId":"00_open","detail":"text contains \"Sign On\" was present"}
-{"seq":4,"at":"2026-09-22T15:43:13.586Z","type":"step.finished","stepId":"00_open","attempts":1}
-{"seq":5,"at":"2026-09-22T15:43:13.586Z","type":"step.started","stepId":"01_user_id","intent":"Enter the username to sign into the application.","action":"type","declaredRisk":"sensitive"}
-{"seq":6,"at":"2026-09-22T15:43:13.586Z","type":"target.resolved","stepId":"01_user_id","rung":"primary","matchCount":1,"control":{"role":"textbox","name":"","frame":""}}
-{"seq":7,"at":"2026-09-22T15:43:13.586Z","type":"policy.needs_approval","stepId":"01_user_id","rule":"approval.draft","risk":"sensitive","reason":"the capability is still a draft and this step is sensitive; drafts only run safe steps unattended"}
-{"seq":8,"at":"2026-09-22T15:43:13.606Z","type":"evidence.screenshot","file":"007-escalation-01_user_id.png","reason":"escalation"}
-{"seq":9,"at":"2026-09-22T15:43:13.607Z","type":"escalation.raised","interventionId":"ae49d366-6b72-42c9-95f9-42e9976fd32e","stepId":"01_user_id","reason":"needs_approval","detail":"the capability is still a draft and this step is sensitive; drafts only run safe steps unattended"}
-{"seq":10,"at":"2026-09-22T15:43:13.709Z","type":"escalation.resolved","interventionId":"ae49d366-6b72-42c9-95f9-42e9976fd32e","resolution":"resume","note":"go ahead","operator":"sahil","humanActions":1,"actions":[{"at":"2026-09-22T15:43:13.708Z","kind":"note","detail":"checked the sign-on screen, fine to continue"}]}
-{"seq":11,"at":"2026-09-22T15:43:13.709Z","type":"approval.granted_by_operator","stepId":"01_user_id","operator":"sahil","risk":"sensitive"}
-{"seq":12,"at":"2026-09-22T15:43:13.714Z","type":"target.resolved","stepId":"01_user_id","rung":"primary","matchCount":1,"control":{"role":"textbox","name":"","frame":""}}
-{"seq":13,"at":"2026-09-22T15:43:13.740Z","type":"action.typed","stepId":"01_user_id","value":"«secret:core_username»"}
-{"seq":14,"at":"2026-09-22T15:43:13.743Z","type":"checkpoint.passed","stepId":"01_user_id","detail":"found Enter the username to sign into the application., now holding the typed value on rung primary"}
-{"seq":15,"at":"2026-09-22T15:43:13.743Z","type":"step.finished","stepId":"01_user_id","attempts":1,"rung":"primary"}
-{"seq":16,"at":"2026-09-22T15:43:13.744Z","type":"step.started","stepId":"02_password","intent":"Enter the password to sign into the application.","action":"type","declaredRisk":"sensitive"}
-{"seq":17,"at":"2026-09-22T15:43:13.744Z","type":"target.resolved","stepId":"02_password","rung":"primary","matchCount":1,"control":{"role":"textbox","name":"","frame":""}}
-{"seq":18,"at":"2026-09-22T15:43:13.780Z","type":"action.typed","stepId":"02_password","value":"«secret:core_password»"}
-{"seq":19,"at":"2026-09-22T15:43:13.784Z","type":"checkpoint.passed","stepId":"02_password","detail":"found Enter the password to sign into the application., now holding the typed value on rung primary"}
-{"seq":20,"at":"2026-09-22T15:43:13.784Z","type":"step.finished","stepId":"02_password","attempts":1,"rung":"primary"}
-{"seq":21,"at":"2026-09-22T15:43:13.784Z","type":"step.started","stepId":"03_sign_on","intent":"Sign on to the Meridian Core application using the provided credentials.","action":"click","declaredRisk":"safe"}
-{"seq":22,"at":"2026-09-22T15:43:13.785Z","type":"target.resolved","stepId":"03_sign_on","rung":"primary","matchCount":1,"control":{"role":"button","name":"Sign On","frame":""}}
-{"seq":23,"at":"2026-09-22T15:43:13.846Z","type":"checkpoint.passed","stepId":"03_sign_on","detail":"text contains \"Home\" was present"}
-{"seq":24,"at":"2026-09-22T15:43:13.847Z","type":"step.finished","stepId":"03_sign_on","attempts":1,"rung":"primary"}
-{"seq":25,"at":"2026-09-22T15:43:13.847Z","type":"step.started","stepId":"04_member_search","intent":"Navigate to the Member Search function to look up member 10021.","action":"click","declaredRisk":"safe"}
-{"seq":26,"at":"2026-09-22T15:43:13.847Z","type":"target.resolved","stepId":"04_member_search","rung":"primary","matchCount":1,"control":{"role":"link","name":"Member Search","frame":"navFrame"}}
-{"seq":27,"at":"2026-09-22T15:43:13.915Z","type":"checkpoint.passed","stepId":"04_member_search","detail":"text contains \"Search\" was present"}
-{"seq":28,"at":"2026-09-22T15:43:13.916Z","type":"step.finished","stepId":"04_member_search","attempts":1,"rung":"primary"}
-{"seq":29,"at":"2026-09-22T15:43:13.916Z","type":"step.started","stepId":"05_member_number","intent":"Enter the member number 10021 into the Member Number field.","action":"type","declaredRisk":"sensitive"}
-{"seq":30,"at":"2026-09-22T15:43:13.916Z","type":"target.resolved","stepId":"05_member_number","rung":"primary","matchCount":1,"control":{"role":"textbox","name":"","frame":"mainFrame"}}
-{"seq":31,"at":"2026-09-22T15:43:13.930Z","type":"action.typed","stepId":"05_member_number","value":"10021"}
-{"seq":32,"at":"2026-09-22T15:43:13.936Z","type":"checkpoint.passed","stepId":"05_member_number","detail":"found Enter the member number 10021 into the Member Number field., now holding the typed value on rung primary"}
-{"seq":33,"at":"2026-09-22T15:43:13.936Z","type":"step.finished","stepId":"05_member_number","attempts":1,"rung":"primary"}
-{"seq":34,"at":"2026-09-22T15:43:13.936Z","type":"step.started","stepId":"06_search","intent":"Search for member 10021 using the Member Number field.","action":"click","declaredRisk":"safe"}
-{"seq":35,"at":"2026-09-22T15:43:13.936Z","type":"target.resolved","stepId":"06_search","rung":"primary","matchCount":1,"control":{"role":"button","name":"Search","frame":"mainFrame"}}
-{"seq":36,"at":"2026-09-22T15:43:13.995Z","type":"checkpoint.passed","stepId":"06_search","detail":"text contains \"10021\" was present"}
-{"seq":37,"at":"2026-09-22T15:43:13.995Z","type":"step.finished","stepId":"06_search","attempts":1,"rung":"primary"}
-{"seq":38,"at":"2026-09-22T15:43:13.995Z","type":"step.started","stepId":"07_member_number","intent":"Open the member record for member 10021 to view their account details.","action":"click","declaredRisk":"safe"}
-{"seq":39,"at":"2026-09-22T15:43:13.996Z","type":"target.resolved","stepId":"07_member_number","rung":"primary","matchCount":1,"control":{"role":"link","name":"10021","frame":"mainFrame"}}
-{"seq":40,"at":"2026-09-22T15:43:14.057Z","type":"checkpoint.passed","stepId":"07_member_number","detail":"text contains \"Profile\" was present"}
-{"seq":41,"at":"2026-09-22T15:43:14.057Z","type":"step.finished","stepId":"07_member_number","attempts":1,"rung":"primary"}
-{"seq":42,"at":"2026-09-22T15:43:14.057Z","type":"step.started","stepId":"08_accounts","intent":"Navigate to the Accounts section to view the member's account details.","action":"click","declaredRisk":"safe"}
-{"seq":43,"at":"2026-09-22T15:43:14.057Z","type":"target.resolved","stepId":"08_accounts","rung":"primary","matchCount":1,"control":{"role":"link","name":"Accounts","frame":"mainFrame"}}
-{"seq":44,"at":"2026-09-22T15:43:14.123Z","type":"checkpoint.passed","stepId":"08_accounts","detail":"text contains \"Open Sub-Account\" was present"}
-{"seq":45,"at":"2026-09-22T15:43:14.124Z","type":"step.finished","stepId":"08_accounts","attempts":1,"rung":"primary"}
-{"seq":46,"at":"2026-09-22T15:43:14.124Z","type":"step.started","stepId":"09_read_account_number","intent":"Read the account number for the Regular Savings account.","action":"read","declaredRisk":"safe"}
-{"seq":47,"at":"2026-09-22T15:43:14.124Z","type":"target.resolved","stepId":"09_read_account_number","rung":"primary","matchCount":1,"control":{"role":"cell","name":"S0001-10021","frame":"mainFrame"}}
-{"seq":48,"at":"2026-09-22T15:43:14.124Z","type":"value.extracted","stepId":"09_read_account_number","key":"accountNumber","value":"S0001-10021"}
-{"seq":49,"at":"2026-09-22T15:43:14.130Z","type":"step.finished","stepId":"09_read_account_number","attempts":1,"rung":"primary"}
-{"seq":50,"at":"2026-09-22T15:43:14.131Z","type":"step.started","stepId":"10_read_savings_balance","intent":"Read the current balance for the Regular Savings account.","action":"read","declaredRisk":"safe"}
-{"seq":51,"at":"2026-09-22T15:43:14.131Z","type":"target.resolved","stepId":"10_read_savings_balance","rung":"primary","matchCount":1,"control":{"role":"cell","name":"$4,182.55","frame":"mainFrame"}}
-{"seq":52,"at":"2026-09-22T15:43:14.131Z","type":"value.extracted","stepId":"10_read_savings_balance","key":"savingsBalance","value":4182.55}
-{"seq":53,"at":"2026-09-22T15:43:14.138Z","type":"step.finished","stepId":"10_read_savings_balance","attempts":1,"rung":"primary"}
-{"seq":54,"at":"2026-09-22T15:43:14.138Z","type":"run.finished","status":"success","outputs":{"accountNumber":"S0001-10021","savingsBalance":4182.55}}
+{"seq":1,"at":"2026-09-22T15:56:33.142Z","type":"run.started","runId":"replay-handoff","capability":{"id":"meridian-core.member_savings_balance","version":1,"name":"member_savings_balance"},"tenantId":"base","approval":"draft","inputs":{"memberNumber":"10021"},"overrides":{"patched":[],"inserted":[],"skipped":[]}}
+{"seq":2,"at":"2026-09-22T15:56:33.146Z","type":"step.started","stepId":"00_open","intent":"Open the application at its entry point.","action":"navigate","declaredRisk":"safe"}
+{"seq":3,"at":"2026-09-22T15:56:33.169Z","type":"checkpoint.passed","stepId":"00_open","detail":"text contains \"Sign On\" was present"}
+{"seq":4,"at":"2026-09-22T15:56:33.169Z","type":"step.finished","stepId":"00_open","attempts":1}
+{"seq":5,"at":"2026-09-22T15:56:33.170Z","type":"step.started","stepId":"01_user_id","intent":"Enter the username to sign into the application.","action":"type","declaredRisk":"sensitive"}
+{"seq":6,"at":"2026-09-22T15:56:33.170Z","type":"target.resolved","stepId":"01_user_id","rung":"primary","matchCount":1,"control":{"role":"textbox","name":"","frame":""}}
+{"seq":7,"at":"2026-09-22T15:56:33.170Z","type":"policy.needs_approval","stepId":"01_user_id","rule":"approval.draft","risk":"sensitive","reason":"the capability is still a draft and this step is sensitive; drafts only run safe steps unattended"}
+{"seq":8,"at":"2026-09-22T15:56:33.189Z","type":"evidence.screenshot","file":"007-escalation-01_user_id.png","reason":"escalation"}
+{"seq":9,"at":"2026-09-22T15:56:33.189Z","type":"escalation.raised","interventionId":"248729c6-9b87-4dc2-a387-96a3bad52578","stepId":"01_user_id","reason":"needs_approval","detail":"the capability is still a draft and this step is sensitive; drafts only run safe steps unattended"}
+{"seq":10,"at":"2026-09-22T15:56:33.203Z","type":"escalation.resolved","interventionId":"248729c6-9b87-4dc2-a387-96a3bad52578","resolution":"resume","note":"go ahead","operator":"sahil","humanActions":1,"actions":[{"at":"2026-09-22T15:56:33.202Z","kind":"note","detail":"checked the sign-on screen, fine to continue"}]}
+{"seq":11,"at":"2026-09-22T15:56:33.203Z","type":"approval.granted_by_operator","stepId":"01_user_id","operator":"sahil","risk":"sensitive"}
+{"seq":12,"at":"2026-09-22T15:56:33.206Z","type":"target.resolved","stepId":"01_user_id","rung":"primary","matchCount":1,"control":{"role":"textbox","name":"","frame":""}}
+{"seq":13,"at":"2026-09-22T15:56:33.240Z","type":"action.typed","stepId":"01_user_id","value":"«secret:core_username»"}
+{"seq":14,"at":"2026-09-22T15:56:33.244Z","type":"checkpoint.passed","stepId":"01_user_id","detail":"found Enter the username to sign into the application., now holding the typed value on rung primary"}
+{"seq":15,"at":"2026-09-22T15:56:33.245Z","type":"step.finished","stepId":"01_user_id","attempts":1,"rung":"primary"}
+{"seq":16,"at":"2026-09-22T15:56:33.245Z","type":"step.started","stepId":"02_password","intent":"Enter the password to sign into the application.","action":"type","declaredRisk":"sensitive"}
+{"seq":17,"at":"2026-09-22T15:56:33.245Z","type":"target.resolved","stepId":"02_password","rung":"primary","matchCount":1,"control":{"role":"textbox","name":"","frame":""}}
+{"seq":18,"at":"2026-09-22T15:56:33.281Z","type":"action.typed","stepId":"02_password","value":"«secret:core_password»"}
+{"seq":19,"at":"2026-09-22T15:56:33.283Z","type":"checkpoint.passed","stepId":"02_password","detail":"found Enter the password to sign into the application., now holding the typed value on rung primary"}
+{"seq":20,"at":"2026-09-22T15:56:33.284Z","type":"step.finished","stepId":"02_password","attempts":1,"rung":"primary"}
+{"seq":21,"at":"2026-09-22T15:56:33.284Z","type":"step.started","stepId":"03_sign_on","intent":"Sign on to the Meridian Core application using the provided credentials.","action":"click","declaredRisk":"safe"}
+{"seq":22,"at":"2026-09-22T15:56:33.284Z","type":"target.resolved","stepId":"03_sign_on","rung":"primary","matchCount":1,"control":{"role":"button","name":"Sign On","frame":""}}
+{"seq":23,"at":"2026-09-22T15:56:33.347Z","type":"checkpoint.passed","stepId":"03_sign_on","detail":"text contains \"Home\" was present"}
+{"seq":24,"at":"2026-09-22T15:56:33.348Z","type":"step.finished","stepId":"03_sign_on","attempts":1,"rung":"primary"}
+{"seq":25,"at":"2026-09-22T15:56:33.348Z","type":"step.started","stepId":"04_member_search","intent":"Navigate to the Member Search function to look up member 10021.","action":"click","declaredRisk":"safe"}
+{"seq":26,"at":"2026-09-22T15:56:33.348Z","type":"target.resolved","stepId":"04_member_search","rung":"primary","matchCount":1,"control":{"role":"link","name":"Member Search","frame":"navFrame"}}
+{"seq":27,"at":"2026-09-22T15:56:33.416Z","type":"checkpoint.passed","stepId":"04_member_search","detail":"text contains \"Search\" was present"}
+{"seq":28,"at":"2026-09-22T15:56:33.416Z","type":"step.finished","stepId":"04_member_search","attempts":1,"rung":"primary"}
+{"seq":29,"at":"2026-09-22T15:56:33.416Z","type":"step.started","stepId":"05_member_number","intent":"Enter the member number 10021 into the Member Number field.","action":"type","declaredRisk":"sensitive"}
+{"seq":30,"at":"2026-09-22T15:56:33.417Z","type":"target.resolved","stepId":"05_member_number","rung":"primary","matchCount":1,"control":{"role":"textbox","name":"","frame":"mainFrame"}}
+{"seq":31,"at":"2026-09-22T15:56:33.429Z","type":"action.typed","stepId":"05_member_number","value":"10021"}
+{"seq":32,"at":"2026-09-22T15:56:33.434Z","type":"checkpoint.passed","stepId":"05_member_number","detail":"found Enter the member number 10021 into the Member Number field., now holding the typed value on rung primary"}
+{"seq":33,"at":"2026-09-22T15:56:33.434Z","type":"step.finished","stepId":"05_member_number","attempts":1,"rung":"primary"}
+{"seq":34,"at":"2026-09-22T15:56:33.435Z","type":"step.started","stepId":"06_search","intent":"Search for member 10021 using the Member Number field.","action":"click","declaredRisk":"safe"}
+{"seq":35,"at":"2026-09-22T15:56:33.435Z","type":"target.resolved","stepId":"06_search","rung":"primary","matchCount":1,"control":{"role":"button","name":"Search","frame":"mainFrame"}}
+{"seq":36,"at":"2026-09-22T15:56:33.496Z","type":"checkpoint.passed","stepId":"06_search","detail":"text contains \"10021\" was present"}
+{"seq":37,"at":"2026-09-22T15:56:33.496Z","type":"step.finished","stepId":"06_search","attempts":1,"rung":"primary"}
+{"seq":38,"at":"2026-09-22T15:56:33.497Z","type":"step.started","stepId":"07_member_number","intent":"Open the member record for member 10021 to view their account details.","action":"click","declaredRisk":"safe"}
+{"seq":39,"at":"2026-09-22T15:56:33.497Z","type":"target.resolved","stepId":"07_member_number","rung":"primary","matchCount":1,"control":{"role":"link","name":"10021","frame":"mainFrame"}}
+{"seq":40,"at":"2026-09-22T15:56:33.557Z","type":"checkpoint.passed","stepId":"07_member_number","detail":"text contains \"Profile\" was present"}
+{"seq":41,"at":"2026-09-22T15:56:33.558Z","type":"step.finished","stepId":"07_member_number","attempts":1,"rung":"primary"}
+{"seq":42,"at":"2026-09-22T15:56:33.558Z","type":"step.started","stepId":"08_accounts","intent":"Navigate to the Accounts section to view the member's account details.","action":"click","declaredRisk":"safe"}
+{"seq":43,"at":"2026-09-22T15:56:33.558Z","type":"target.resolved","stepId":"08_accounts","rung":"primary","matchCount":1,"control":{"role":"link","name":"Accounts","frame":"mainFrame"}}
+{"seq":44,"at":"2026-09-22T15:56:33.607Z","type":"checkpoint.passed","stepId":"08_accounts","detail":"text contains \"Open Sub-Account\" was present"}
+{"seq":45,"at":"2026-09-22T15:56:33.607Z","type":"step.finished","stepId":"08_accounts","attempts":1,"rung":"primary"}
+{"seq":46,"at":"2026-09-22T15:56:33.607Z","type":"step.started","stepId":"09_read_account_number","intent":"Read the account number for the Regular Savings account.","action":"read","declaredRisk":"safe"}
+{"seq":47,"at":"2026-09-22T15:56:33.608Z","type":"target.resolved","stepId":"09_read_account_number","rung":"primary","matchCount":1,"control":{"role":"cell","name":"S0001-10021","frame":"mainFrame"}}
+{"seq":48,"at":"2026-09-22T15:56:33.608Z","type":"value.extracted","stepId":"09_read_account_number","key":"accountNumber","value":"S0001-10021"}
+{"seq":49,"at":"2026-09-22T15:56:33.613Z","type":"step.finished","stepId":"09_read_account_number","attempts":1,"rung":"primary"}
+{"seq":50,"at":"2026-09-22T15:56:33.614Z","type":"step.started","stepId":"10_read_savings_balance","intent":"Read the current balance for the Regular Savings account.","action":"read","declaredRisk":"safe"}
+{"seq":51,"at":"2026-09-22T15:56:33.614Z","type":"target.resolved","stepId":"10_read_savings_balance","rung":"primary","matchCount":1,"control":{"role":"cell","name":"$4,182.55","frame":"mainFrame"}}
+{"seq":52,"at":"2026-09-22T15:56:33.614Z","type":"value.extracted","stepId":"10_read_savings_balance","key":"savingsBalance","value":4182.55}
+{"seq":53,"at":"2026-09-22T15:56:33.620Z","type":"step.finished","stepId":"10_read_savings_balance","attempts":1,"rung":"primary"}
+{"seq":54,"at":"2026-09-22T15:56:33.620Z","type":"run.finished","status":"success","outputs":{"accountNumber":"S0001-10021","savingsBalance":4182.55}}

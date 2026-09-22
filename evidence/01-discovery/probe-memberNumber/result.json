@@ -6,7 +6,7 @@
     "expected": "Open the member record for member 99999 to view their account details.",
     "stepId": "07_member_number",
     "stepIntent": "Open the member record for member 99999 to view their account details.",
-    "url": "http://127.0.0.1:52032/console",
+    "url": "http://127.0.0.1:53092/console",
     "observed": "MENU Home Member Search Transactions Reports Sign Off\nMeridian Credit Union · Core Servicing 4.2.1 Member Search No records found for \"99999\". Back to search"
   },
   "trace": {
@@ -23,7 +23,7 @@
         "risk": "safe",
         "attempts": 1,
         "guardsFired": [],
-        "durationMs": 209
+        "durationMs": 192
       },
       {
         "stepId": "01_user_id",
@@ -33,7 +33,7 @@
         "rung": "primary",
         "attempts": 1,
         "guardsFired": [],
-        "durationMs": 40
+        "durationMs": 42
       },
       {
         "stepId": "02_password",
@@ -43,7 +43,7 @@
         "rung": "primary",
         "attempts": 1,
         "guardsFired": [],
-        "durationMs": 21
+        "durationMs": 10
       },
       {
         "stepId": "03_sign_on",
@@ -53,7 +53,7 @@
         "rung": "primary",
         "attempts": 1,
         "guardsFired": [],
-        "durationMs": 74
+        "durationMs": 77
       },
       {
         "stepId": "04_member_search",
@@ -63,7 +63,7 @@
         "rung": "primary",
         "attempts": 1,
         "guardsFired": [],
-        "durationMs": 71
+        "durationMs": 70
       },
       {
         "stepId": "05_member_number",
@@ -73,7 +73,7 @@
         "rung": "primary",
         "attempts": 1,
         "guardsFired": [],
-        "durationMs": 19
+        "durationMs": 21
       },
       {
         "stepId": "06_search",
@@ -95,6 +95,6 @@
         "durationMs": 0
       }
     ],
-    "durationMs": 1081
+    "durationMs": 1072
   }
 }

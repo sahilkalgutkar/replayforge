@@ -8,13 +8,13 @@ thing end to end against the demo app. Only the first step uses a model.
 screenshots. Everything was redacted on the way to disk: the teller password was typed
 into the app in every run and appears in none of these files.
 
-- **01-discovery**: the model-driven run, on qwen3:14b through Ollama. 11 turns in 141s, recorded against member 10021. `run.jsonl` has every decision the model made and what happened; the numbered PNGs are the screens it was looking at when it made each one. `probe-memberNumber/` is the replay with member 99999 that found how the app reports a member who doesn't exist.
+- **01-discovery**: the model-driven run, on qwen3:14b through Ollama. 11 turns in 138s, recorded against member 10021. `run.jsonl` has every decision the model made and what happened; the numbered PNGs are the screens it was looking at when it made each one. `probe-memberNumber/` is the replay with member 99999 that found how the app reports a member who doesn't exist.
 
 - **02-replay-success**: the same capability for a different member, 10022, in a fresh browser, so every form field name in the app differs from what discovery saw. Result: `success: accountNumber=S0002-10022, savingsBalance=58004.12`.
 
 - **03-replay-business-outcome**: a member that doesn't exist, and not the one probed during discovery. It ends as `MEMBER_NOT_FOUND`, an answer rather than an error. Result: `MEMBER_NOT_FOUND (answer): The member record does not exist in the system.`.
 
-- **04-replay-injected-fault**: the app is told to expire the session, so the very next screen, the sign-on, comes back with a 401, so the run stops on `HTTP_ERROR` and raises a request for a person instead of carrying on. There's no one attached here, so it ends as escalated, with a screenshot. Result: `escalated at 03_sign_on: HTTP_ERROR: The application answered a screen with an HTTP error status (401, 403 or 5xx), such as a signed-out session, a permission denial or a server fault. Added to every recorded flow. (intervention 30bd20c1-7b03-451f-91bf-775286c9f186)`.
+- **04-replay-injected-fault**: the app is told to expire the session, so the very next screen, the sign-on, comes back with a 401, so the run stops on `HTTP_ERROR` and raises a request for a person instead of carrying on. There's no one attached here, so it ends as escalated, with a screenshot. Result: `escalated at 03_sign_on: HTTP_ERROR: The application answered a screen with an HTTP error status (401, 403 or 5xx), such as a signed-out session, a permission denial or a server fault. Added to every recorded flow. (intervention 94e3af46-f5f5-4a06-b91f-ea752ea3b55d)`.
 
 - **05-replay-rejected-input**: an argument that doesn't fit the contract, turned away before the browser is touched. Result: `failed [input_invalid] at start: memberNumber does not match the required pattern ^[0-9]{4,10}$`.
 

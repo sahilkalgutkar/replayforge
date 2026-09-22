@@ -1,21 +1,21 @@
-{"seq":1,"at":"2026-09-22T15:43:13.072Z","type":"run.started","runId":"replay-session-expired","capability":{"id":"meridian-core.member_savings_balance","version":1,"name":"member_savings_balance"},"tenantId":"base","approval":"draft","inputs":{"memberNumber":"10021"},"overrides":{"patched":[],"inserted":[],"skipped":[]}}
-{"seq":2,"at":"2026-09-22T15:43:13.076Z","type":"step.started","stepId":"00_open","intent":"Open the application at its entry point.","action":"navigate","declaredRisk":"safe"}
-{"seq":3,"at":"2026-09-22T15:43:13.087Z","type":"checkpoint.passed","stepId":"00_open","detail":"text contains \"Sign On\" was present"}
-{"seq":4,"at":"2026-09-22T15:43:13.087Z","type":"step.finished","stepId":"00_open","attempts":1}
-{"seq":5,"at":"2026-09-22T15:43:13.087Z","type":"step.started","stepId":"01_user_id","intent":"Enter the username to sign into the application.","action":"type","declaredRisk":"sensitive"}
-{"seq":6,"at":"2026-09-22T15:43:13.087Z","type":"target.resolved","stepId":"01_user_id","rung":"primary","matchCount":1,"control":{"role":"textbox","name":"","frame":""}}
-{"seq":7,"at":"2026-09-22T15:43:13.107Z","type":"action.typed","stepId":"01_user_id","value":"«secret:core_username»"}
-{"seq":8,"at":"2026-09-22T15:43:13.110Z","type":"checkpoint.passed","stepId":"01_user_id","detail":"found Enter the username to sign into the application., now holding the typed value on rung primary"}
-{"seq":9,"at":"2026-09-22T15:43:13.110Z","type":"step.finished","stepId":"01_user_id","attempts":1,"rung":"primary"}
-{"seq":10,"at":"2026-09-22T15:43:13.110Z","type":"step.started","stepId":"02_password","intent":"Enter the password to sign into the application.","action":"type","declaredRisk":"sensitive"}
-{"seq":11,"at":"2026-09-22T15:43:13.110Z","type":"target.resolved","stepId":"02_password","rung":"primary","matchCount":1,"control":{"role":"textbox","name":"","frame":""}}
-{"seq":12,"at":"2026-09-22T15:43:13.142Z","type":"action.typed","stepId":"02_password","value":"«secret:core_password»"}
-{"seq":13,"at":"2026-09-22T15:43:13.144Z","type":"checkpoint.passed","stepId":"02_password","detail":"found Enter the password to sign into the application., now holding the typed value on rung primary"}
-{"seq":14,"at":"2026-09-22T15:43:13.145Z","type":"step.finished","stepId":"02_password","attempts":1,"rung":"primary"}
-{"seq":15,"at":"2026-09-22T15:43:13.145Z","type":"step.started","stepId":"03_sign_on","intent":"Sign on to the Meridian Core application using the provided credentials.","action":"click","declaredRisk":"safe"}
-{"seq":16,"at":"2026-09-22T15:43:13.145Z","type":"target.resolved","stepId":"03_sign_on","rung":"primary","matchCount":1,"control":{"role":"button","name":"Sign On","frame":""}}
-{"seq":17,"at":"2026-09-22T15:43:13.201Z","type":"outcome.matched","stepId":"03_sign_on","outcome":"HTTP_ERROR","disposition":"needs_human","url":"http://127.0.0.1:52032/console"}
-{"seq":18,"at":"2026-09-22T15:43:13.226Z","type":"evidence.screenshot","file":"017-escalation-03_sign_on.png","reason":"escalation"}
-{"seq":19,"at":"2026-09-22T15:43:13.226Z","type":"escalation.raised","interventionId":"30bd20c1-7b03-451f-91bf-775286c9f186","stepId":"03_sign_on","reason":"business_outcome_needs_human","detail":"HTTP_ERROR: The application answered a screen with an HTTP error status (401, 403 or 5xx), such as a signed-out session, a permission denial or a server fault. Added to every recorded flow."}
-{"seq":20,"at":"2026-09-22T15:43:13.226Z","type":"escalation.resolved","interventionId":"30bd20c1-7b03-451f-91bf-775286c9f186","resolution":"unavailable","note":"nobody is attached to handle this run"}
-{"seq":21,"at":"2026-09-22T15:43:13.226Z","type":"run.finished","status":"escalated","outcome":"HTTP_ERROR"}
+{"seq":1,"at":"2026-09-22T15:56:32.610Z","type":"run.started","runId":"replay-session-expired","capability":{"id":"meridian-core.member_savings_balance","version":1,"name":"member_savings_balance"},"tenantId":"base","approval":"draft","inputs":{"memberNumber":"10021"},"overrides":{"patched":[],"inserted":[],"skipped":[]}}
+{"seq":2,"at":"2026-09-22T15:56:32.614Z","type":"step.started","stepId":"00_open","intent":"Open the application at its entry point.","action":"navigate","declaredRisk":"safe"}
+{"seq":3,"at":"2026-09-22T15:56:32.628Z","type":"checkpoint.passed","stepId":"00_open","detail":"text contains \"Sign On\" was present"}
+{"seq":4,"at":"2026-09-22T15:56:32.628Z","type":"step.finished","stepId":"00_open","attempts":1}
+{"seq":5,"at":"2026-09-22T15:56:32.628Z","type":"step.started","stepId":"01_user_id","intent":"Enter the username to sign into the application.","action":"type","declaredRisk":"sensitive"}
+{"seq":6,"at":"2026-09-22T15:56:32.628Z","type":"target.resolved","stepId":"01_user_id","rung":"primary","matchCount":1,"control":{"role":"textbox","name":"","frame":""}}
+{"seq":7,"at":"2026-09-22T15:56:32.649Z","type":"action.typed","stepId":"01_user_id","value":"«secret:core_username»"}
+{"seq":8,"at":"2026-09-22T15:56:32.652Z","type":"checkpoint.passed","stepId":"01_user_id","detail":"found Enter the username to sign into the application., now holding the typed value on rung primary"}
+{"seq":9,"at":"2026-09-22T15:56:32.653Z","type":"step.finished","stepId":"01_user_id","attempts":1,"rung":"primary"}
+{"seq":10,"at":"2026-09-22T15:56:32.653Z","type":"step.started","stepId":"02_password","intent":"Enter the password to sign into the application.","action":"type","declaredRisk":"sensitive"}
+{"seq":11,"at":"2026-09-22T15:56:32.653Z","type":"target.resolved","stepId":"02_password","rung":"primary","matchCount":1,"control":{"role":"textbox","name":"","frame":""}}
+{"seq":12,"at":"2026-09-22T15:56:32.690Z","type":"action.typed","stepId":"02_password","value":"«secret:core_password»"}
+{"seq":13,"at":"2026-09-22T15:56:32.694Z","type":"checkpoint.passed","stepId":"02_password","detail":"found Enter the password to sign into the application., now holding the typed value on rung primary"}
+{"seq":14,"at":"2026-09-22T15:56:32.694Z","type":"step.finished","stepId":"02_password","attempts":1,"rung":"primary"}
+{"seq":15,"at":"2026-09-22T15:56:32.694Z","type":"step.started","stepId":"03_sign_on","intent":"Sign on to the Meridian Core application using the provided credentials.","action":"click","declaredRisk":"safe"}
+{"seq":16,"at":"2026-09-22T15:56:32.694Z","type":"target.resolved","stepId":"03_sign_on","rung":"primary","matchCount":1,"control":{"role":"button","name":"Sign On","frame":""}}
+{"seq":17,"at":"2026-09-22T15:56:32.770Z","type":"outcome.matched","stepId":"03_sign_on","outcome":"HTTP_ERROR","disposition":"needs_human","url":"http://127.0.0.1:53092/console"}
+{"seq":18,"at":"2026-09-22T15:56:32.809Z","type":"evidence.screenshot","file":"017-escalation-03_sign_on.png","reason":"escalation"}
+{"seq":19,"at":"2026-09-22T15:56:32.809Z","type":"escalation.raised","interventionId":"94e3af46-f5f5-4a06-b91f-ea752ea3b55d","stepId":"03_sign_on","reason":"business_outcome_needs_human","detail":"HTTP_ERROR: The application answered a screen with an HTTP error status (401, 403 or 5xx), such as a signed-out session, a permission denial or a server fault. Added to every recorded flow."}
+{"seq":20,"at":"2026-09-22T15:56:32.809Z","type":"escalation.resolved","interventionId":"94e3af46-f5f5-4a06-b91f-ea752ea3b55d","resolution":"unavailable","note":"nobody is attached to handle this run"}
+{"seq":21,"at":"2026-09-22T15:56:32.810Z","type":"run.finished","status":"escalated","outcome":"HTTP_ERROR"}

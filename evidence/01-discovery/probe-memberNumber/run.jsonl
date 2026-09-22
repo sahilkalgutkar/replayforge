@@ -1,34 +1,34 @@
-{"seq":1,"at":"2026-09-22T15:43:02.169Z","type":"run.started","runId":"probe-memberNumber","capability":{"id":"meridian-core.member_savings_balance","version":1,"name":"member_savings_balance"},"tenantId":"base","approval":"draft","inputs":{"memberNumber":"99999"},"overrides":{"patched":[],"inserted":[],"skipped":[]}}
-{"seq":2,"at":"2026-09-22T15:43:02.249Z","type":"step.started","stepId":"00_open","intent":"Open the application at its entry point.","action":"navigate","declaredRisk":"safe"}
-{"seq":3,"at":"2026-09-22T15:43:02.458Z","type":"checkpoint.passed","stepId":"00_open","detail":"text contains \"Sign On\" was present"}
-{"seq":4,"at":"2026-09-22T15:43:02.458Z","type":"step.finished","stepId":"00_open","attempts":1}
-{"seq":5,"at":"2026-09-22T15:43:02.458Z","type":"step.started","stepId":"01_user_id","intent":"Enter the username to sign into the application.","action":"type","declaredRisk":"sensitive"}
-{"seq":6,"at":"2026-09-22T15:43:02.458Z","type":"target.resolved","stepId":"01_user_id","rung":"primary","matchCount":1,"control":{"role":"textbox","name":"","frame":""}}
-{"seq":7,"at":"2026-09-22T15:43:02.494Z","type":"action.typed","stepId":"01_user_id","value":"«secret:core_username»"}
-{"seq":8,"at":"2026-09-22T15:43:02.498Z","type":"checkpoint.passed","stepId":"01_user_id","detail":"found Enter the username to sign into the application., now holding the typed value on rung primary"}
-{"seq":9,"at":"2026-09-22T15:43:02.498Z","type":"step.finished","stepId":"01_user_id","attempts":1,"rung":"primary"}
-{"seq":10,"at":"2026-09-22T15:43:02.498Z","type":"step.started","stepId":"02_password","intent":"Enter the password to sign into the application.","action":"type","declaredRisk":"sensitive"}
-{"seq":11,"at":"2026-09-22T15:43:02.498Z","type":"target.resolved","stepId":"02_password","rung":"primary","matchCount":1,"control":{"role":"textbox","name":"","frame":""}}
-{"seq":12,"at":"2026-09-22T15:43:02.516Z","type":"action.typed","stepId":"02_password","value":"«secret:core_password»"}
-{"seq":13,"at":"2026-09-22T15:43:02.519Z","type":"checkpoint.passed","stepId":"02_password","detail":"found Enter the password to sign into the application., now holding the typed value on rung primary"}
-{"seq":14,"at":"2026-09-22T15:43:02.519Z","type":"step.finished","stepId":"02_password","attempts":1,"rung":"primary"}
-{"seq":15,"at":"2026-09-22T15:43:02.519Z","type":"step.started","stepId":"03_sign_on","intent":"Sign on to the Meridian Core application using the provided credentials.","action":"click","declaredRisk":"safe"}
-{"seq":16,"at":"2026-09-22T15:43:02.519Z","type":"target.resolved","stepId":"03_sign_on","rung":"primary","matchCount":1,"control":{"role":"button","name":"Sign On","frame":""}}
-{"seq":17,"at":"2026-09-22T15:43:02.592Z","type":"checkpoint.passed","stepId":"03_sign_on","detail":"text contains \"Home\" was present"}
-{"seq":18,"at":"2026-09-22T15:43:02.593Z","type":"step.finished","stepId":"03_sign_on","attempts":1,"rung":"primary"}
-{"seq":19,"at":"2026-09-22T15:43:02.593Z","type":"step.started","stepId":"04_member_search","intent":"Navigate to the Member Search function to look up member 99999.","action":"click","declaredRisk":"safe"}
-{"seq":20,"at":"2026-09-22T15:43:02.593Z","type":"target.resolved","stepId":"04_member_search","rung":"primary","matchCount":1,"control":{"role":"link","name":"Member Search","frame":"navFrame"}}
-{"seq":21,"at":"2026-09-22T15:43:02.664Z","type":"checkpoint.passed","stepId":"04_member_search","detail":"text contains \"Search\" was present"}
-{"seq":22,"at":"2026-09-22T15:43:02.664Z","type":"step.finished","stepId":"04_member_search","attempts":1,"rung":"primary"}
-{"seq":23,"at":"2026-09-22T15:43:02.664Z","type":"step.started","stepId":"05_member_number","intent":"Enter the member number 99999 into the Member Number field.","action":"type","declaredRisk":"sensitive"}
-{"seq":24,"at":"2026-09-22T15:43:02.665Z","type":"target.resolved","stepId":"05_member_number","rung":"primary","matchCount":1,"control":{"role":"textbox","name":"","frame":"mainFrame"}}
-{"seq":25,"at":"2026-09-22T15:43:02.677Z","type":"action.typed","stepId":"05_member_number","value":"99999"}
-{"seq":26,"at":"2026-09-22T15:43:02.683Z","type":"checkpoint.passed","stepId":"05_member_number","detail":"found Enter the member number 99999 into the Member Number field., now holding the typed value on rung primary"}
-{"seq":27,"at":"2026-09-22T15:43:02.683Z","type":"step.finished","stepId":"05_member_number","attempts":1,"rung":"primary"}
-{"seq":28,"at":"2026-09-22T15:43:02.683Z","type":"step.started","stepId":"06_search","intent":"Search for member 99999 using the Member Number field.","action":"click","declaredRisk":"safe"}
-{"seq":29,"at":"2026-09-22T15:43:02.683Z","type":"target.resolved","stepId":"06_search","rung":"primary","matchCount":1,"control":{"role":"button","name":"Search","frame":"mainFrame"}}
-{"seq":30,"at":"2026-09-22T15:43:02.741Z","type":"checkpoint.passed","stepId":"06_search","detail":"text contains \"99999\" was present"}
-{"seq":31,"at":"2026-09-22T15:43:02.741Z","type":"step.finished","stepId":"06_search","attempts":1,"rung":"primary"}
-{"seq":32,"at":"2026-09-22T15:43:02.741Z","type":"step.started","stepId":"07_member_number","intent":"Open the member record for member 99999 to view their account details.","action":"click","declaredRisk":"safe"}
-{"seq":33,"at":"2026-09-22T15:43:02.742Z","type":"step.retrying","stepId":"07_member_number","attempt":1,"reason":"could not find Open the member record for member 99999 to view their account details. (tried 3 targeting rung(s))"}
-{"seq":34,"at":"2026-09-22T15:43:03.250Z","type":"run.finished","status":"failed","category":"target_unresolvable"}
+{"seq":1,"at":"2026-09-22T15:56:23.478Z","type":"run.started","runId":"probe-memberNumber","capability":{"id":"meridian-core.member_savings_balance","version":1,"name":"member_savings_balance"},"tenantId":"base","approval":"draft","inputs":{"memberNumber":"99999"},"overrides":{"patched":[],"inserted":[],"skipped":[]}}
+{"seq":2,"at":"2026-09-22T15:56:23.559Z","type":"step.started","stepId":"00_open","intent":"Open the application at its entry point.","action":"navigate","declaredRisk":"safe"}
+{"seq":3,"at":"2026-09-22T15:56:23.750Z","type":"checkpoint.passed","stepId":"00_open","detail":"text contains \"Sign On\" was present"}
+{"seq":4,"at":"2026-09-22T15:56:23.751Z","type":"step.finished","stepId":"00_open","attempts":1}
+{"seq":5,"at":"2026-09-22T15:56:23.751Z","type":"step.started","stepId":"01_user_id","intent":"Enter the username to sign into the application.","action":"type","declaredRisk":"sensitive"}
+{"seq":6,"at":"2026-09-22T15:56:23.752Z","type":"target.resolved","stepId":"01_user_id","rung":"primary","matchCount":1,"control":{"role":"textbox","name":"","frame":""}}
+{"seq":7,"at":"2026-09-22T15:56:23.789Z","type":"action.typed","stepId":"01_user_id","value":"«secret:core_username»"}
+{"seq":8,"at":"2026-09-22T15:56:23.792Z","type":"checkpoint.passed","stepId":"01_user_id","detail":"found Enter the username to sign into the application., now holding the typed value on rung primary"}
+{"seq":9,"at":"2026-09-22T15:56:23.793Z","type":"step.finished","stepId":"01_user_id","attempts":1,"rung":"primary"}
+{"seq":10,"at":"2026-09-22T15:56:23.793Z","type":"step.started","stepId":"02_password","intent":"Enter the password to sign into the application.","action":"type","declaredRisk":"sensitive"}
+{"seq":11,"at":"2026-09-22T15:56:23.793Z","type":"target.resolved","stepId":"02_password","rung":"primary","matchCount":1,"control":{"role":"textbox","name":"","frame":""}}
+{"seq":12,"at":"2026-09-22T15:56:23.800Z","type":"action.typed","stepId":"02_password","value":"«secret:core_password»"}
+{"seq":13,"at":"2026-09-22T15:56:23.802Z","type":"checkpoint.passed","stepId":"02_password","detail":"found Enter the password to sign into the application., now holding the typed value on rung primary"}
+{"seq":14,"at":"2026-09-22T15:56:23.803Z","type":"step.finished","stepId":"02_password","attempts":1,"rung":"primary"}
+{"seq":15,"at":"2026-09-22T15:56:23.803Z","type":"step.started","stepId":"03_sign_on","intent":"Sign on to the Meridian Core application using the provided credentials.","action":"click","declaredRisk":"safe"}
+{"seq":16,"at":"2026-09-22T15:56:23.804Z","type":"target.resolved","stepId":"03_sign_on","rung":"primary","matchCount":1,"control":{"role":"button","name":"Sign On","frame":""}}
+{"seq":17,"at":"2026-09-22T15:56:23.879Z","type":"checkpoint.passed","stepId":"03_sign_on","detail":"text contains \"Home\" was present"}
+{"seq":18,"at":"2026-09-22T15:56:23.880Z","type":"step.finished","stepId":"03_sign_on","attempts":1,"rung":"primary"}
+{"seq":19,"at":"2026-09-22T15:56:23.880Z","type":"step.started","stepId":"04_member_search","intent":"Navigate to the Member Search function to look up member 99999.","action":"click","declaredRisk":"safe"}
+{"seq":20,"at":"2026-09-22T15:56:23.880Z","type":"target.resolved","stepId":"04_member_search","rung":"primary","matchCount":1,"control":{"role":"link","name":"Member Search","frame":"navFrame"}}
+{"seq":21,"at":"2026-09-22T15:56:23.950Z","type":"checkpoint.passed","stepId":"04_member_search","detail":"text contains \"Search\" was present"}
+{"seq":22,"at":"2026-09-22T15:56:23.950Z","type":"step.finished","stepId":"04_member_search","attempts":1,"rung":"primary"}
+{"seq":23,"at":"2026-09-22T15:56:23.950Z","type":"step.started","stepId":"05_member_number","intent":"Enter the member number 99999 into the Member Number field.","action":"type","declaredRisk":"sensitive"}
+{"seq":24,"at":"2026-09-22T15:56:23.951Z","type":"target.resolved","stepId":"05_member_number","rung":"primary","matchCount":1,"control":{"role":"textbox","name":"","frame":"mainFrame"}}
+{"seq":25,"at":"2026-09-22T15:56:23.965Z","type":"action.typed","stepId":"05_member_number","value":"99999"}
+{"seq":26,"at":"2026-09-22T15:56:23.970Z","type":"checkpoint.passed","stepId":"05_member_number","detail":"found Enter the member number 99999 into the Member Number field., now holding the typed value on rung primary"}
+{"seq":27,"at":"2026-09-22T15:56:23.971Z","type":"step.finished","stepId":"05_member_number","attempts":1,"rung":"primary"}
+{"seq":28,"at":"2026-09-22T15:56:23.971Z","type":"step.started","stepId":"06_search","intent":"Search for member 99999 using the Member Number field.","action":"click","declaredRisk":"safe"}
+{"seq":29,"at":"2026-09-22T15:56:23.971Z","type":"target.resolved","stepId":"06_search","rung":"primary","matchCount":1,"control":{"role":"button","name":"Search","frame":"mainFrame"}}
+{"seq":30,"at":"2026-09-22T15:56:24.029Z","type":"checkpoint.passed","stepId":"06_search","detail":"text contains \"99999\" was present"}
+{"seq":31,"at":"2026-09-22T15:56:24.029Z","type":"step.finished","stepId":"06_search","attempts":1,"rung":"primary"}
+{"seq":32,"at":"2026-09-22T15:56:24.029Z","type":"step.started","stepId":"07_member_number","intent":"Open the member record for member 99999 to view their account details.","action":"click","declaredRisk":"safe"}
+{"seq":33,"at":"2026-09-22T15:56:24.029Z","type":"step.retrying","stepId":"07_member_number","attempt":1,"reason":"could not find Open the member record for member 99999 to view their account details. (tried 3 targeting rung(s))"}
+{"seq":34,"at":"2026-09-22T15:56:24.552Z","type":"run.finished","status":"failed","category":"target_unresolvable"}
