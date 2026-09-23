@@ -5,7 +5,67 @@ don't have an API. The idea is to let an LLM work out a task in the UI once,
 save what it did as a structured artifact, and then replay that artifact
 deterministically without the model.
 
-Work in progress.
+The design write-up is in [REPORT.md](REPORT.md), and a recorded set of runs,
+including the model's discovery run and a few failures, is in
+[evidence/](evidence/README.md).
+
+## Trying it
+
+You need Node 22+ and [Ollama](https://ollama.com) with `qwen3:14b` pulled
+(only discovery uses it).
+
+```bash
+npm install
+npx playwright install chromium
+cp .env.example .env
+npm run target
+```
+
+Leave that running, and in another terminal, record the capability. The
+model works out the flow, which takes a couple of minutes, and saves it under
+`capabilities/`:
+
+```bash
+npm run cli -- discover --target http://localhost:4310 \
+  --capability meridian-core.member_savings_balance --name member_savings_balance \
+  --goal "Look up member 10021 and read their Regular Savings balance and account number." \
+  --input memberNumber=10021 --probe memberNumber=99999
+```
+
+It's saved as a draft, and a draft won't type into anything unattended. Run it
+with a person attached instead:
+
+```bash
+npm run cli -- replay member_savings_balance --target http://localhost:4310 --input memberNumber=10021 --operator
+```
+
+That prints a console URL. Open it, take the request, look around the page if
+you like, and hand it back. The run finishes in the same browser session.
+
+Then approve it, which saves v2, and it runs on its own, with no model:
+
+```bash
+npm run cli -- approve member_savings_balance --by your-name
+npm run cli -- replay member_savings_balance --target http://localhost:4310 --input memberNumber=10022
+npm run cli -- replay member_savings_balance --target http://localhost:4310 --input memberNumber=88888
+```
+
+The first returns a balance; the second returns `MEMBER_NOT_FOUND`, which is
+an answer, not an error. To see it from an agent's side:
+
+```bash
+npm run cli -- capabilities --tools
+npm run cli -- call member_savings_balance --target http://localhost:4310 --input memberNumber=10021
+```
+
+To see a failure, inject one before a replay:
+
+```bash
+curl -X POST http://localhost:4310/_test/inject -d mode=session-timeout -d scope=global
+```
+
+That run stops on the expired session and asks for a person rather than
+carrying on. Runs are logged under `runs/`.
 
 ## Status
 
@@ -14,7 +74,7 @@ Work in progress.
 - [x] Artifact schema
 - [x] Guardrails and replay engine
 - [x] Discovery agent
-- [ ] Human handoff, CLI and write-up
+- [x] Human handoff, CLI and write-up
 
 ## Demo app
 
@@ -179,6 +239,30 @@ Anything written to a log or sent anywhere is redacted first: known secret
 values by name, then anything shaped like an SSN, email, card or account number.
 Screenshots can't be redacted that way, so they're only taken on failure by
 default.
+
+## Handing a run to a person
+
+When a run needs a person, it stops and raises a request instead of failing.
+That happens on a `needs_human` outcome like an expired session, on a step
+riskier than an unapproved capability may take, or on a step marked to
+escalate. The person picks it up in a small console and takes over **the same
+browser session**, so they see exactly what the run saw and don't have to sign
+in and navigate back. While they have it, the run holds no lease on the page
+and can't act. When they hand it back, the run carries on from where it
+stopped. Anything they did is logged under their name; text they type is sent
+to the page but not written down. Handing back also counts as approving that
+step.
+
+The console is basic: a refreshing screenshot you can click on, a box to type
+into, and take/resume/abort buttons. It's enough to show the handoff works, not
+something I'd give to an operations team.
+
+## Calling it from an agent
+
+The catalog lists capabilities as tool definitions, each with a JSON schema for
+its inputs, and runs them by name. An agent gets back typed outputs, a named
+outcome, or an error saying whether a retry is worth it. It never sees the
+steps or the secrets.
 
 ## Tests
 

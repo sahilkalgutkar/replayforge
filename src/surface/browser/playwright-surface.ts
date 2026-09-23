@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { chromium, type Browser, type BrowserContext, type Frame, type Page } from 'playwright';
 import { fingerprintNodes } from '../fingerprint.js';
-import type { FrameInfo, Observation, Primitive, Surface, UiNode } from '../types.js';
+import type { DirectControl, FrameInfo, Observation, Primitive, Surface, UiNode } from '../types.js';
 import { extractFrame, REF_ATTRIBUTE, type FrameExtract } from './extract.js';
 
 export interface BrowserSurfaceOptions {
@@ -22,7 +22,7 @@ export interface BrowserSurfaceOptions {
  * The browser side of the surface. This is the only file that knows about
  * Playwright, frames and the DOM.
  */
-export class BrowserSurface implements Surface {
+export class BrowserSurface implements Surface, DirectControl {
   readonly kind = 'browser' as const;
   readonly targetId: string;
 
@@ -166,6 +166,28 @@ export class BrowserSurface implements Surface {
 
   async screenshot(): Promise<Buffer> {
     return this.pageRef.screenshot({ fullPage: false });
+  }
+
+  // A person driving the same page during a handoff. Same page, not a fresh
+  // browser: a fresh one would lose the session cookie, the frames and whatever
+  // half-finished form the run stopped on.
+
+  async clickAt(x: number, y: number): Promise<void> {
+    await this.pageRef.mouse.click(x, y);
+    await this.settle(this.navigationGraceMs);
+  }
+
+  async typeText(text: string): Promise<void> {
+    await this.pageRef.keyboard.type(text, { delay: 12 });
+  }
+
+  async pressKey(key: string): Promise<void> {
+    await this.pageRef.keyboard.press(key);
+    await this.settle(this.navigationGraceMs);
+  }
+
+  async viewport(): Promise<{ width: number; height: number }> {
+    return this.pageRef.viewportSize() ?? { width: 1280, height: 900 };
   }
 
   async dispose(): Promise<void> {

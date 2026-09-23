@@ -61,7 +61,7 @@ function balanceScript(probePhrase = 'No records found for "99999".'): ScriptEnt
     {
       name: 'finish',
       input: {
-        summary: 'Looks a member up and returns their Regular Savings balance and account number.',
+        summary: 'Looked up member 10021 and read their Regular Savings balance and account number.',
         outcomes: [
           { name: 'Member not found', description: 'No member has that number.', disposition: 'answer' },
           { name: 'Access denied', description: 'Not entitled to the record.', disposition: 'needs_human' },
@@ -138,6 +138,9 @@ describe('recording a capability', () => {
       { kind: 'secret', ref: 'core_password' },
       { kind: 'param', name: 'memberNumber' },
     ]);
+    // The model describes what it just did, example member included. An agent
+    // reading the tool description shouldn't think it's about member 10021.
+    expect(artifact.description).toBe('Looked up member {{memberNumber}} and read their Regular Savings balance and account number.');
   });
 
   it('targets the result row by the searched value and reads the grid by row and column', async () => {

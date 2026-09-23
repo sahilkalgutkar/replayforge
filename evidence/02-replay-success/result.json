@@ -1,0 +1,126 @@
+{
+  "status": "success",
+  "outputs": {
+    "accountNumber": "S0002-10022",
+    "savingsBalance": 58004.12
+  },
+  "trace": {
+    "runId": "replay-success",
+    "capabilityId": "meridian-core.member_savings_balance",
+    "capabilityVersion": 1,
+    "tenantId": "base",
+    "evidenceDir": "evidence/.scratch/replay-success",
+    "steps": [
+      {
+        "stepId": "00_open",
+        "intent": "Open the application at its entry point.",
+        "status": "ok",
+        "risk": "safe",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 68
+      },
+      {
+        "stepId": "01_user_id",
+        "intent": "Enter the username to sign into the application.",
+        "status": "ok",
+        "risk": "sensitive",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 70
+      },
+      {
+        "stepId": "02_password",
+        "intent": "Enter the password to sign into the application.",
+        "status": "ok",
+        "risk": "sensitive",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 40
+      },
+      {
+        "stepId": "03_sign_on",
+        "intent": "Sign on to the Meridian Core application using the provided credentials.",
+        "status": "ok",
+        "risk": "safe",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 74
+      },
+      {
+        "stepId": "04_member_search",
+        "intent": "Navigate to the Member Search function to look up member 10022.",
+        "status": "ok",
+        "risk": "safe",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 75
+      },
+      {
+        "stepId": "05_member_number",
+        "intent": "Enter the member number 10022 into the Member Number field.",
+        "status": "ok",
+        "risk": "sensitive",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 18
+      },
+      {
+        "stepId": "06_search",
+        "intent": "Search for member 10022 using the Member Number field.",
+        "status": "ok",
+        "risk": "safe",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 57
+      },
+      {
+        "stepId": "07_member_number",
+        "intent": "Open the member record for member 10022 to view their account details.",
+        "status": "ok",
+        "risk": "safe",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 66
+      },
+      {
+        "stepId": "08_accounts",
+        "intent": "Navigate to the Accounts section to view the member's account details.",
+        "status": "ok",
+        "risk": "safe",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 63
+      },
+      {
+        "stepId": "09_read_account_number",
+        "intent": "Read the account number for the Regular Savings account.",
+        "status": "ok",
+        "risk": "safe",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 7
+      },
+      {
+        "stepId": "10_read_savings_balance",
+        "intent": "Read the current balance for the Regular Savings account.",
+        "status": "ok",
+        "risk": "safe",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 8
+      }
+    ],
+    "durationMs": 568
+  }
+}

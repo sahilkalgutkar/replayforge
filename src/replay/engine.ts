@@ -320,7 +320,7 @@ class ReplayRun {
             attempt -= 1;
             continue;
           }
-          if (handoff) return { kind: 'terminal', result: this.escalatedResult(step, detail) };
+          if (handoff) return { kind: 'terminal', result: await this.endEscalated(step, detail) };
           const category: FailureCategory =
             resolution.failure.reason === 'ambiguous' ? 'target_ambiguous' : 'target_unresolvable';
           return {
@@ -390,7 +390,7 @@ class ReplayRun {
           attempt -= 1;
           continue;
         }
-        return { kind: 'terminal', result: this.escalatedResult(step, decision.reason) };
+        return { kind: 'terminal', result: await this.endEscalated(step, decision.reason) };
       }
 
       try {
@@ -453,7 +453,7 @@ class ReplayRun {
             attempt -= 1;
             continue;
           }
-          if (handoff) return { kind: 'terminal', result: this.escalatedResult(step, check.detail) };
+          if (handoff) return { kind: 'terminal', result: await this.endEscalated(step, check.detail) };
           return {
             kind: 'terminal',
             result: await this.failAtStep(step, after, {
@@ -633,9 +633,7 @@ class ReplayRun {
         return { kind: 'continue' };
       }
       this.reports.push(this.reportFor(step, 'escalated'));
-      const escalated = this.escalatedResult(step, `${outcome.name}: ${outcome.description}`);
-      await this.recorder?.writeJson('result', escalated);
-      await this.recorder?.event('run.finished', { status: 'escalated', outcome: outcome.name });
+      const escalated = await this.endEscalated(step, `${outcome.name}: ${outcome.description}`, outcome.name);
       return { kind: 'terminal', result: escalated };
     }
 
@@ -724,14 +722,19 @@ class ReplayRun {
     return outcome;
   }
 
-  private escalatedResult(step: Step, reason: string): ReplayResult {
-    return {
+  // Every way a run can end escalated goes through here, so each one leaves a
+  // result on disk like the other endings do.
+  private async endEscalated(step: Step, reason: string, outcome?: string): Promise<ReplayResult> {
+    const result: ReplayResult = {
       status: 'escalated',
       interventionId: this.lastInterventionId,
       reason,
       stepId: step.id,
       trace: this.trace(),
     };
+    await this.recorder?.writeJson('result', result);
+    await this.recorder?.event('run.finished', { status: 'escalated', ...(outcome ? { outcome } : {}) });
+    return result;
   }
 
   private async failAtStep(

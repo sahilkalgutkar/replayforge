@@ -1,0 +1,100 @@
+{
+  "status": "failed",
+  "error": {
+    "category": "target_unresolvable",
+    "message": "could not find Open the member record for member 99999 to view their account details. (tried 3 targeting rung(s))",
+    "expected": "Open the member record for member 99999 to view their account details.",
+    "stepId": "07_member_number",
+    "stepIntent": "Open the member record for member 99999 to view their account details.",
+    "url": "http://127.0.0.1:53092/console",
+    "observed": "MENU Home Member Search Transactions Reports Sign Off\nMeridian Credit Union · Core Servicing 4.2.1 Member Search No records found for \"99999\". Back to search"
+  },
+  "trace": {
+    "runId": "probe-memberNumber",
+    "capabilityId": "meridian-core.member_savings_balance",
+    "capabilityVersion": 1,
+    "tenantId": "base",
+    "evidenceDir": "evidence/.scratch/discovery/probe-memberNumber",
+    "steps": [
+      {
+        "stepId": "00_open",
+        "intent": "Open the application at its entry point.",
+        "status": "ok",
+        "risk": "safe",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 192
+      },
+      {
+        "stepId": "01_user_id",
+        "intent": "Enter the username to sign into the application.",
+        "status": "ok",
+        "risk": "sensitive",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 42
+      },
+      {
+        "stepId": "02_password",
+        "intent": "Enter the password to sign into the application.",
+        "status": "ok",
+        "risk": "sensitive",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 10
+      },
+      {
+        "stepId": "03_sign_on",
+        "intent": "Sign on to the Meridian Core application using the provided credentials.",
+        "status": "ok",
+        "risk": "safe",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 77
+      },
+      {
+        "stepId": "04_member_search",
+        "intent": "Navigate to the Member Search function to look up member 99999.",
+        "status": "ok",
+        "risk": "safe",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 70
+      },
+      {
+        "stepId": "05_member_number",
+        "intent": "Enter the member number 99999 into the Member Number field.",
+        "status": "ok",
+        "risk": "sensitive",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 21
+      },
+      {
+        "stepId": "06_search",
+        "intent": "Search for member 99999 using the Member Number field.",
+        "status": "ok",
+        "risk": "safe",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 58
+      },
+      {
+        "stepId": "07_member_number",
+        "intent": "Open the member record for member 99999 to view their account details.",
+        "status": "failed",
+        "risk": "safe",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 0
+      }
+    ],
+    "durationMs": 1072
+  }
+}

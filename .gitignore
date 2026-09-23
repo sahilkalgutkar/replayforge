@@ -5,3 +5,7 @@ coverage/
 .DS_Store
 
 /.env
+
+# Local capability store and run logs; curated examples live in evidence/
+/capabilities/
+/runs/

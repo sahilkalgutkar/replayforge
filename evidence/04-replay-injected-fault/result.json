@@ -1,0 +1,54 @@
+{
+  "status": "escalated",
+  "interventionId": "94e3af46-f5f5-4a06-b91f-ea752ea3b55d",
+  "reason": "HTTP_ERROR: The application answered a screen with an HTTP error status (401, 403 or 5xx), such as a signed-out session, a permission denial or a server fault. Added to every recorded flow.",
+  "stepId": "03_sign_on",
+  "trace": {
+    "runId": "replay-session-expired",
+    "capabilityId": "meridian-core.member_savings_balance",
+    "capabilityVersion": 1,
+    "tenantId": "base",
+    "evidenceDir": "evidence/.scratch/replay-session-expired",
+    "steps": [
+      {
+        "stepId": "00_open",
+        "intent": "Open the application at its entry point.",
+        "status": "ok",
+        "risk": "safe",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 14
+      },
+      {
+        "stepId": "01_user_id",
+        "intent": "Enter the username to sign into the application.",
+        "status": "ok",
+        "risk": "sensitive",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 25
+      },
+      {
+        "stepId": "02_password",
+        "intent": "Enter the password to sign into the application.",
+        "status": "ok",
+        "risk": "sensitive",
+        "rung": "primary",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 41
+      },
+      {
+        "stepId": "03_sign_on",
+        "intent": "Sign on to the Meridian Core application using the provided credentials.",
+        "status": "escalated",
+        "risk": "safe",
+        "attempts": 1,
+        "guardsFired": [],
+        "durationMs": 0
+      }
+    ],
+    "durationMs": 200
+  }
+}
